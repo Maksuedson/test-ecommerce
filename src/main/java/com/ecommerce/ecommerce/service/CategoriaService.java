@@ -8,6 +8,7 @@ import java.util.List;
 public interface CategoriaService {
 
 	CategoriaDto cadastrar(CategoriaDto categoriaDto);
+	List<CategoriaDto> cadastrarLista(List<CategoriaDto> lista);
 
 	CategoriaDto buscaCategoriaPorId(Long id);
 	

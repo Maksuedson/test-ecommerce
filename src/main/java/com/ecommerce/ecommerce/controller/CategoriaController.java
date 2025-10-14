@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/categorias")
 public class CategoriaController {
@@ -26,5 +28,11 @@ public class CategoriaController {
         CategoriaDto categoriaSalvo = categoriaService.cadastrar(categoriaDto);
         CategoriaResponse categoriaResponse = CategoriaMapper.mapToCategoriaResponse(categoriaSalvo);
         return new ResponseEntity<>(categoriaResponse, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/lista")
+    public ResponseEntity<List<CategoriaDto>> salvarLista(@RequestBody List<CategoriaDto> categoriaResponse){
+        List<CategoriaDto> lista = categoriaService.cadastrarLista(categoriaResponse);
+        return new ResponseEntity<>(lista, HttpStatus.CREATED);
     }
 }

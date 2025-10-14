@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoriaServiceImpl implements CategoriaService {
@@ -26,6 +27,12 @@ public class CategoriaServiceImpl implements CategoriaService {
         categoria.setDataCadastro(LocalDateTime.now().withNano(0));
         Categoria categoriaSalvo = categoriaRepository.save(categoria);
         return CategoriaMapper.mapToCategoriaDto(categoriaSalvo);
+    }
+
+    public List<CategoriaDto> cadastrarLista(List<CategoriaDto> lista){
+        return lista.stream()
+                .map(this::cadastrar)
+                .collect(Collectors.toList());
     }
 
     @Override

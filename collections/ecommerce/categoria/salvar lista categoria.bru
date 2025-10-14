@@ -1,0 +1,35 @@
+meta {
+  name: salvar lista categoria
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/api/categorias
+  body: json
+  auth: inherit
+}
+
+body:json {
+  [
+    {
+      "nome": "Eletrônicos"
+    },
+    {
+      "nome": "Roupas"
+    },
+    {
+      "nome": "Livros"
+    },
+    {
+      "nome": "Móveis"
+    },
+    {
+      "nome": "Esportes"
+    }
+  ]
+}
+
+settings {
+  encodeUrl: true
+}
