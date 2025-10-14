@@ -43,13 +43,15 @@ public class ClienteServiceImpl implements ClienteService {
 	@Override
 	public ClienteDto alterarCliente(Long id, ClienteDto clienteDto) {
 		Cliente cliente = buscaPorId(id);
+
+		if (cliente.getNome().equals(clienteDto.getNome())) {
+			throw new NaoAlteradoException("Cliente não foi alterado.");
+		}
 		
 		cliente.setNome(clienteDto.getNome());
 		cliente.setDataUltimaModificacao(LocalDateTime.now().withNano(0));
 		
-		if (cliente.getNome().equals(clienteDto.getNome())) {
-			throw new NaoAlteradoException("Cliente não foi alterado.");
-		}
+
 		
 		Cliente clienteAtualizado = clienteRepository.save(cliente);
 		return ClienteMapper.mapToClienteDto(clienteAtualizado);
