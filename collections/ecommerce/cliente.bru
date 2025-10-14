@@ -1,0 +1,31 @@
+meta {
+  name: cliente
+  type: http
+  seq: 1
+}
+
+post {
+  url: localhost:8080/api/clientes
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+  "tenantId": "123456",
+    "nome": "Empresa Exemplo",
+    "endereco": "Rua das Flores",
+    "numero": "100",
+    "bairro": "Centro",
+    "cep": "12345-678",
+    "cidade": "São Paulo",
+    "estado": "SP",
+    "telefone": "(11) 1234-5678",
+    "celular": "(11) 91234-5678",
+    "email": "contato@empresaexemplo.com"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
