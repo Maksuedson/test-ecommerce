@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,4 +24,6 @@ public class Categoria {
     @OneToMany(mappedBy = "categoria")
     @Setter(AccessLevel.NONE)
     private List<Produto> produtos;
+    private LocalDateTime dataCadastro;
+    private LocalDateTime dataUltimaModificacao;
 }
