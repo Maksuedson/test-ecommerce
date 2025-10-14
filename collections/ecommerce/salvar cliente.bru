@@ -1,18 +1,17 @@
 meta {
-  name: cliente
+  name: salvar cliente
   type: http
   seq: 1
 }
 
 post {
-  url: localhost:8080/api/clientes
+  url: http://localhost:8080/api/clientes
   body: json
   auth: inherit
 }
 
 body:json {
   {
-  "tenantId": "123456",
     "nome": "Empresa Exemplo",
     "endereco": "Rua das Flores",
     "numero": "100",

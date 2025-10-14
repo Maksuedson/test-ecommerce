@@ -4,10 +4,7 @@ import com.ecommerce.ecommerce.dto.ClienteDto;
 import com.ecommerce.ecommerce.service.ClienteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/clientes")
@@ -23,5 +20,10 @@ public class ClienteController {
     public ResponseEntity<ClienteDto> salvaCliente(@RequestBody ClienteDto clienteDto){
         ClienteDto savedClienteDto = clienteService.cadastrar(clienteDto);
         return new ResponseEntity<>(savedClienteDto, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ClienteDto> buscarClientePorId(@PathVariable Long id){
+        return ResponseEntity.ok(clienteService.buscaClientePorId(id));
     }
 }
