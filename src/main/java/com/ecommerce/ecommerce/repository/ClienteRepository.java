@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long>{
 
-    @Query("select c from Cliente c where c.nome like %?1%")
+    @Query("select c from Cliente c where c.nome ilike %?1%")
     List<Cliente> findByName(String nome);
     
 }
