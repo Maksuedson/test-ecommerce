@@ -51,7 +51,14 @@ public class CategoriaServiceImpl implements CategoriaService {
 
     @Override
     public List<CategoriaDto> buscaCategoriaPorNome(String nome) {
-        return null;
+        List<Categoria> lista = categoriaRepository.findByName(nome);
+
+        if (lista.isEmpty()) {
+            throw new NaoEncontradoException("Categoria não encontrado!");
+        }
+        return lista.stream()
+                .map(CategoriaMapper::mapToCategoriaDto)
+                .collect(Collectors.toList());
     }
 
     @Override
