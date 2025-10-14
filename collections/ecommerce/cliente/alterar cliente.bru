@@ -1,0 +1,22 @@
+meta {
+  name: alterar cliente
+  type: http
+  seq: 2
+}
+
+put {
+  url: http://localhost:8080/api/clientes
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "id": 1,
+    "nome": "Empresa Modelo"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

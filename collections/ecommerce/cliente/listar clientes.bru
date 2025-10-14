@@ -1,20 +1,13 @@
 meta {
-  name: alterar cliente
+  name: listar clientes
   type: http
-  seq: 5
+  seq: 2
 }
 
-put {
+get {
   url: http://localhost:8080/api/clientes
   body: json
   auth: inherit
-}
-
-body:json {
-  {
-    "id": 1,
-    "nome": "Empresa Modelo"
-  }
 }
 
 settings {
