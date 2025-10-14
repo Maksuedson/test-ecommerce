@@ -1,9 +1,10 @@
 package com.ecommerce.ecommerce.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -16,4 +17,9 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "categoria")
+    @Setter(AccessLevel.NONE)
+    private List<Produto> produtos;
 }
