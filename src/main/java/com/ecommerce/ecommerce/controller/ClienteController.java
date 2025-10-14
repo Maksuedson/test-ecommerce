@@ -24,6 +24,12 @@ public class ClienteController {
         return new ResponseEntity<>(savedClienteDto, HttpStatus.CREATED);
     }
 
+    @PostMapping("/lista")
+    public ResponseEntity<List<ClienteDto>> salvarListaClientes(@RequestBody List<ClienteDto> clientesDto){
+        List<ClienteDto> clientesSalvos = clienteService.cadastrarLista(clientesDto);
+        return new ResponseEntity<>(clientesSalvos, HttpStatus.CREATED);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ClienteDto> buscarClientePorId(@PathVariable Long id){
         return ResponseEntity.ok(clienteService.buscaClientePorId(id));
@@ -38,5 +44,10 @@ public class ClienteController {
     public ResponseEntity<ClienteDto> alteraCliente(@RequestBody ClienteDto clienteDto){
         ClienteDto clienteDtoAtualizado = clienteService.alterarCliente(clienteDto.getId(), clienteDto);
         return ResponseEntity.ok(clienteDtoAtualizado);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ClienteDto>> listaClientes(){
+        return ResponseEntity.ok(clienteService.listaClientes());
     }
 }

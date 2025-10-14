@@ -5,7 +5,7 @@ meta {
 }
 
 put {
-  url: http://localhost:8080/api/clientes/nome/Empresa
+  url: http://localhost:8080/api/clientes
   body: json
   auth: inherit
 }
@@ -13,16 +13,7 @@ put {
 body:json {
   {
     "id": 1,
-    "nome": "Empresa Modelo",
-    "endereco": "Rua das Flores",
-    "numero": "100",
-    "bairro": "Centro",
-    "cep": "12345-678",
-    "cidade": "São Paulo",
-    "estado": "SP",
-    "telefone": "(11) 1234-5678",
-    "celular": "(11) 91234-5678",
-    "email": "contato@empresaexemplo.com"
+    "nome": "Empresa Modelo"
   }
 }
 

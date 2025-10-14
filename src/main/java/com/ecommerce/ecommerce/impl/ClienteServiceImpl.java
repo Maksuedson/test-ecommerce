@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
@@ -31,6 +32,12 @@ public class ClienteServiceImpl implements ClienteService {
 		cliente.setDataCadastro(LocalDateTime.now().withNano(0));
 		Cliente salvaCliente = clienteRepository.save(cliente);
 		return ClienteMapper.mapToClienteDto(salvaCliente);
+	}
+
+	public List<ClienteDto> cadastrarLista(List<ClienteDto> clientesDto) {
+		return clientesDto.stream()
+				.map(this::cadastrar)
+				.collect(Collectors.toList());
 	}
 
 

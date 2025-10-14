@@ -1,0 +1,81 @@
+meta {
+  name: salvar lista de clientes
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8080/api/clientes
+  body: json
+  auth: inherit
+}
+
+body:json {
+  [
+    {
+      "nome": "João Silva",
+      "endereco": "Avenida Paulista",
+      "numero": "1578",
+      "bairro": "Bela Vista",
+      "cep": "01310-200",
+      "cidade": "São Paulo",
+      "estado": "SP",
+      "telefone": "(11) 3344-7788",
+      "celular": "(11) 99876-5432",
+      "email": "joao.silva@email.com"
+    },
+    {
+      "nome": "Maria Oliveira",
+      "endereco": "Rua XV de Novembro",
+      "numero": "45",
+      "bairro": "Centro",
+      "cep": "80020-310",
+      "cidade": "Curitiba",
+      "estado": "PR",
+      "telefone": "(41) 3322-1100",
+      "celular": "(41) 98765-4321",
+      "email": "maria.oliveira@email.com"
+    },
+    {
+      "nome": "Carlos Souza",
+      "endereco": "Rua das Acácias",
+      "numero": "210",
+      "bairro": "Jardim das Flores",
+      "cep": "64000-200",
+      "cidade": "Teresina",
+      "estado": "PI",
+      "telefone": "(86) 3232-4455",
+      "celular": "(86) 99888-7766",
+      "email": "carlos.souza@email.com"
+    },
+    {
+      "nome": "Fernanda Lima",
+      "endereco": "Rua do Comércio",
+      "numero": "1200",
+      "bairro": "Centro Histórico",
+      "cep": "90010-320",
+      "cidade": "Porto Alegre",
+      "estado": "RS",
+      "telefone": "(51) 3010-2020",
+      "celular": "(51) 99666-5544",
+      "email": "fernanda.lima@email.com"
+    },
+    {
+      "nome": "Ricardo Mendes",
+      "endereco": "Avenida Brasil",
+      "numero": "999",
+      "bairro": "Copacabana",
+      "cep": "22040-002",
+      "cidade": "Rio de Janeiro",
+      "estado": "RJ",
+      "telefone": "(21) 2222-3333",
+      "celular": "(21) 99999-0000",
+      "email": "ricardo.mendes@email.com"
+    }
+  ]
+  
+}
+
+settings {
+  encodeUrl: true
+}

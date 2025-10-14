@@ -7,6 +7,7 @@ import java.util.List;
 public interface ClienteService {
 
 	ClienteDto cadastrar(ClienteDto clienteDto);
+	List<ClienteDto> cadastrarLista(List<ClienteDto> clientesDto);
 	
 	ClienteDto buscaClientePorId(Long id);
 	
