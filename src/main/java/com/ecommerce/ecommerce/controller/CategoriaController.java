@@ -47,4 +47,10 @@ public class CategoriaController {
     public ResponseEntity<List<CategoriaResponse>> listar(){
         return ResponseEntity.ok(categoriaService.listaCategorias());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleta(@PathVariable Long id){
+        categoriaService.deleteById(id);
+        return ResponseEntity.ok("Categoria excluido com sucesso!");
+    }
 }

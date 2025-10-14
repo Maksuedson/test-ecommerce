@@ -1,11 +1,11 @@
 meta {
-  name: listar categorias
+  name: excluir categoria por id
   type: http
   seq: 5
 }
 
-get {
-  url: http://localhost:8080/api/categorias
+delete {
+  url: http://localhost:8080/api/categorias/1
   body: none
   auth: inherit
 }

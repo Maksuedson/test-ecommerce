@@ -3,10 +3,12 @@ package com.ecommerce.ecommerce.impl;
 import com.ecommerce.ecommerce.controller.response.CategoriaResponse;
 import com.ecommerce.ecommerce.dto.CategoriaDto;
 import com.ecommerce.ecommerce.entity.Categoria;
+import com.ecommerce.ecommerce.exception.IntegridadeException;
 import com.ecommerce.ecommerce.exception.NaoEncontradoException;
 import com.ecommerce.ecommerce.mapper.CategoriaMapper;
 import com.ecommerce.ecommerce.repository.CategoriaRepository;
 import com.ecommerce.ecommerce.service.CategoriaService;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -80,6 +82,12 @@ public class CategoriaServiceImpl implements CategoriaService {
 
     @Override
     public void deleteById(Long id) {
-
+        buscarPorId(id);
+        try {
+            categoriaRepository.deleteById(id);
+        } catch (DataIntegrityViolationException ex) {
+            throw new IntegridadeException(
+                    "Não é possível excluir a categoria porque ele está sendo referenciada por outros registros.");
+        }
     }
 }
