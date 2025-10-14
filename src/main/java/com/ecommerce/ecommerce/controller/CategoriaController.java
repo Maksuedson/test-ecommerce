@@ -1,0 +1,30 @@
+package com.ecommerce.ecommerce.controller;
+
+import com.ecommerce.ecommerce.controller.response.CategoriaResponse;
+import com.ecommerce.ecommerce.dto.CategoriaDto;
+import com.ecommerce.ecommerce.mapper.CategoriaMapper;
+import com.ecommerce.ecommerce.service.CategoriaService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/categorias")
+public class CategoriaController {
+
+    private CategoriaService categoriaService;
+
+    public CategoriaController(CategoriaService categoriaService){
+        this.categoriaService = categoriaService;
+    }
+
+    @PostMapping
+    public ResponseEntity<CategoriaResponse> salvaCategoria(@RequestBody CategoriaDto categoriaDto){
+        CategoriaDto categoriaSalvo = categoriaService.cadastrar(categoriaDto);
+        CategoriaResponse categoriaResponse = CategoriaMapper.mapToCategoriaResponse(categoriaSalvo);
+        return new ResponseEntity<>(categoriaResponse, HttpStatus.CREATED);
+    }
+}
