@@ -6,10 +6,7 @@ import com.ecommerce.ecommerce.mapper.CategoriaMapper;
 import com.ecommerce.ecommerce.service.CategoriaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,5 +31,10 @@ public class CategoriaController {
     public ResponseEntity<List<CategoriaDto>> salvarLista(@RequestBody List<CategoriaDto> categoriaResponse){
         List<CategoriaDto> lista = categoriaService.cadastrarLista(categoriaResponse);
         return new ResponseEntity<>(lista, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CategoriaDto> buscarPorId(@PathVariable Long id){
+        return ResponseEntity.ok(categoriaService.buscaCategoriaPorId(id));
     }
 }

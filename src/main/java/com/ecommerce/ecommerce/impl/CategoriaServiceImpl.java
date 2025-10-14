@@ -2,6 +2,7 @@ package com.ecommerce.ecommerce.impl;
 
 import com.ecommerce.ecommerce.dto.CategoriaDto;
 import com.ecommerce.ecommerce.entity.Categoria;
+import com.ecommerce.ecommerce.exception.NaoEncontradoException;
 import com.ecommerce.ecommerce.mapper.CategoriaMapper;
 import com.ecommerce.ecommerce.repository.CategoriaRepository;
 import com.ecommerce.ecommerce.service.CategoriaService;
@@ -37,7 +38,15 @@ public class CategoriaServiceImpl implements CategoriaService {
 
     @Override
     public CategoriaDto buscaCategoriaPorId(Long id) {
-        return null;
+        Categoria categoria = buscarPorId(id);
+        return CategoriaMapper.mapToCategoriaDto(categoria);
+    }
+
+    private Categoria buscarPorId(Long id) {
+        return categoriaRepository
+                .findById(id)
+                .orElseThrow(
+                        () -> new NaoEncontradoException("Categoria não existe"));
     }
 
     @Override

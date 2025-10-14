@@ -1,0 +1,15 @@
+meta {
+  name: buscar categoria por codigo
+  type: http
+  seq: 8
+}
+
+get {
+  url: http://localhost:8080/api/categorias/2
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
