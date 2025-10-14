@@ -50,4 +50,10 @@ public class ClienteController {
     public ResponseEntity<List<ClienteDto>> listaClientes(){
         return ResponseEntity.ok(clienteService.listaClientes());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleta(@PathVariable Long id){
+        clienteService.deleteById(id);
+        return ResponseEntity.ok("Cliente excluido com sucesso!");
+    }
 }
