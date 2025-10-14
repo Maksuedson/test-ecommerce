@@ -33,4 +33,10 @@ public class ClienteController {
     public ResponseEntity<List<ClienteDto>> buscarClientePorNome(@PathVariable String nome){
         return ResponseEntity.ok(clienteService.buscaClientePorNome(nome));
     }
+
+    @PutMapping()
+    public ResponseEntity<ClienteDto> alteraCliente(@RequestBody ClienteDto clienteDto){
+        ClienteDto clienteDtoAtualizado = clienteService.alterarCliente(clienteDto.getId(), clienteDto);
+        return ResponseEntity.ok(clienteDtoAtualizado);
+    }
 }
