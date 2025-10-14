@@ -1,5 +1,6 @@
 package com.ecommerce.ecommerce.impl;
 
+import com.ecommerce.ecommerce.controller.response.CategoriaResponse;
 import com.ecommerce.ecommerce.dto.CategoriaDto;
 import com.ecommerce.ecommerce.entity.Categoria;
 import com.ecommerce.ecommerce.exception.NaoEncontradoException;
@@ -67,8 +68,14 @@ public class CategoriaServiceImpl implements CategoriaService {
     }
 
     @Override
-    public List<CategoriaDto> listaCategoria() {
-        return null;
+    public List<CategoriaResponse> listaCategorias() {
+        List<Categoria> lista = categoriaRepository.findAll();
+        if (lista.isEmpty()){
+            throw new NaoEncontradoException("Categorias não encontradas");
+        }
+        return lista.stream()
+                .map(CategoriaMapper::mapToCategoriaLista)
+                .collect(Collectors.toList());
     }
 
     @Override

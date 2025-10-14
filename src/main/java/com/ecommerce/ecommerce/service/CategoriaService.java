@@ -1,5 +1,6 @@
 package com.ecommerce.ecommerce.service;
 
+import com.ecommerce.ecommerce.controller.response.CategoriaResponse;
 import com.ecommerce.ecommerce.dto.CategoriaDto;
 import com.ecommerce.ecommerce.dto.ClienteDto;
 
@@ -16,7 +17,7 @@ public interface CategoriaService {
 
 	CategoriaDto alterarCategoriae(Long id, CategoriaDto categoriaDto);
 	
-	List<CategoriaDto> listaCategoria();
+	List<CategoriaResponse> listaCategorias();
 	
 	void deleteById(Long id);
 }

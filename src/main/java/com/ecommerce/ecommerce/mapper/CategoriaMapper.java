@@ -26,6 +26,14 @@ public class CategoriaMapper {
                 categoria.getDataUltimaModificacao());
     }
 
+    public static CategoriaResponse mapToCategoriaLista(Categoria categoria){
+
+        return new CategoriaResponse(
+                categoria.getId(),
+                categoria.getNome(),
+                categoria.getDataCadastro());
+    }
+
     public static CategoriaResponse mapToCategoriaResponse(CategoriaDto categoriaDto){
 
         return new CategoriaResponse(

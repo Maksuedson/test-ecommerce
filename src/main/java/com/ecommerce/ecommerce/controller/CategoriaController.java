@@ -42,4 +42,9 @@ public class CategoriaController {
     public ResponseEntity<List<CategoriaDto>> buscarCategoriaPorNome(@PathVariable String nome){
         return ResponseEntity.ok(categoriaService.buscaCategoriaPorNome(nome));
     }
+
+    @GetMapping
+    public ResponseEntity<List<CategoriaResponse>> listar(){
+        return ResponseEntity.ok(categoriaService.listaCategorias());
+    }
 }
