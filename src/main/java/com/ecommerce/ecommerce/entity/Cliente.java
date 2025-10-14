@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,4 +30,6 @@ public class Cliente {
     private String telefone;
     private String celular;
     private String email;
+    private LocalDateTime dataCadastro;
+    private LocalDateTime dataUltimaModificacao;
 }
