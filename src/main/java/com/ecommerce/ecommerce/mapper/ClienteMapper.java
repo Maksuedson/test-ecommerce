@@ -10,7 +10,6 @@ public class ClienteMapper {
 	public static Cliente mapToCliente(ClienteDto clienteDto) {
 		return new Cliente(
 				clienteDto.getId(),
-				clienteDto.getTenantId(),
 				clienteDto.getNome(),
 				clienteDto.getEndereco(),
 				clienteDto.getNumero(),
@@ -29,7 +28,6 @@ public class ClienteMapper {
 	public static ClienteDto mapToClienteDto(Cliente cliente) {
 		return new ClienteDto(
 				cliente.getId(),
-				cliente.getTenantId(),
 				cliente.getNome(),
 				cliente.getEndereco(),
 				cliente.getNumero(),

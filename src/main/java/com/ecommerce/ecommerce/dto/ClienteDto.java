@@ -14,7 +14,6 @@ public class ClienteDto {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    private String tenantId;
     private String nome;
     private String endereco;
     private String numero;

@@ -19,7 +19,6 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String tenantId;
     private String nome;
     private String endereco;
     private String numero;
