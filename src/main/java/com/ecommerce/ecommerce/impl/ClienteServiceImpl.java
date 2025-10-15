@@ -56,9 +56,16 @@ public class ClienteServiceImpl implements ClienteService {
 		}
 		
 		cliente.setNome(clienteDto.getNome());
+		cliente.setEndereco(clienteDto.getEndereco());
+		cliente.setNumero(clienteDto.getNumero());
+		cliente.setBairro(clienteDto.getBairro());
+		cliente.setCep(clienteDto.getCep());
+		cliente.setCidade(clienteDto.getCidade());
+		cliente.setEstado(clienteDto.getEstado());
+		cliente.setTelefone(clienteDto.getTelefone());
+		cliente.setCelular(clienteDto.getCelular());
+		cliente.setEmail(clienteDto.getEmail());
 		cliente.setDataUltimaModificacao(LocalDateTime.now().withNano(0));
-		
-
 		
 		Cliente clienteAtualizado = clienteRepository.save(cliente);
 		return ClienteMapper.mapToClienteDto(clienteAtualizado);
