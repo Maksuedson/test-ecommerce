@@ -15,7 +15,7 @@ public interface CategoriaService {
 	
 	List<CategoriaDto> buscaCategoriaPorNome(String nome);
 
-	CategoriaDto alterarCategoriae(Long id, CategoriaDto categoriaDto);
+	CategoriaDto alterar(Long id, CategoriaDto categoriaDto);
 	
 	List<CategoriaResponse> listaCategorias();
 	

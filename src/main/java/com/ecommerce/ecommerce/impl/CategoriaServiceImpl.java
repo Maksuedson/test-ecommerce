@@ -4,6 +4,7 @@ import com.ecommerce.ecommerce.controller.response.CategoriaResponse;
 import com.ecommerce.ecommerce.dto.CategoriaDto;
 import com.ecommerce.ecommerce.entity.Categoria;
 import com.ecommerce.ecommerce.exception.IntegridadeException;
+import com.ecommerce.ecommerce.exception.NaoAlteradoException;
 import com.ecommerce.ecommerce.exception.NaoEncontradoException;
 import com.ecommerce.ecommerce.mapper.CategoriaMapper;
 import com.ecommerce.ecommerce.repository.CategoriaRepository;
@@ -65,8 +66,19 @@ public class CategoriaServiceImpl implements CategoriaService {
     }
 
     @Override
-    public CategoriaDto alterarCategoriae(Long id, CategoriaDto categoriaDto) {
-        return null;
+    public CategoriaDto alterar(Long id, CategoriaDto categoriaDto) {
+        Categoria categoria = buscarPorId(id);
+
+        if (categoria.getNome().equals(categoriaDto.getNome())) {
+            throw new NaoAlteradoException("Categoria não foi alterado.");
+        }
+
+        categoria.setNome(categoriaDto.getNome());
+        categoria.setDataUltimaModificacao(LocalDateTime.now().withNano(0));
+
+        Categoria categoriaAtualizado = categoriaRepository.save(categoria);
+
+        return CategoriaMapper.mapToCategoriaDto(categoriaAtualizado);
     }
 
     @Override

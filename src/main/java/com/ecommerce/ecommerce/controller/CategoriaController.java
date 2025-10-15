@@ -38,6 +38,13 @@ public class CategoriaController {
         return ResponseEntity.ok(categoriaService.buscaCategoriaPorId(id));
     }
 
+    @PutMapping
+    public ResponseEntity<CategoriaResponse> alterar(@RequestBody CategoriaDto categoriaDto){
+        CategoriaDto categoriaAlterado = categoriaService.alterar(categoriaDto.getId(), categoriaDto);
+        CategoriaResponse catetoria = CategoriaMapper.mapToCategoriaResponse(categoriaAlterado);
+        return ResponseEntity.ok(catetoria);
+    }
+
     @GetMapping("/nome/{nome}")
     public ResponseEntity<List<CategoriaDto>> buscarCategoriaPorNome(@PathVariable String nome){
         return ResponseEntity.ok(categoriaService.buscaCategoriaPorNome(nome));
