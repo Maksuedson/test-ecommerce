@@ -28,9 +28,10 @@ public class CategoriaController {
     }
 
     @PostMapping("/lista")
-    public ResponseEntity<List<CategoriaDto>> salvarLista(@RequestBody List<CategoriaDto> categoriaResponse){
+    public ResponseEntity<List<CategoriaResponse>> salvarLista(@RequestBody List<CategoriaDto> categoriaResponse){
         List<CategoriaDto> lista = categoriaService.cadastrarLista(categoriaResponse);
-        return new ResponseEntity<>(lista, HttpStatus.CREATED);
+        List<CategoriaResponse> categorias = CategoriaMapper.mapToCategoriaResponseLista(lista);
+        return new ResponseEntity<>(categorias, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
