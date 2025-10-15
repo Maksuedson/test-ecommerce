@@ -11,7 +11,7 @@ public interface ProdutoService {
 
 	ProdutoDto bucarProdutoPorId(UUID id);
 
-	ProdutoDto alterar(Long id, ProdutoDto produtoDto);
+	ProdutoDto alterar(UUID id, ProdutoDto produtoDto);
 
 	List<ProdutoDto> buscarProdutoPorNome(String nome);
 	

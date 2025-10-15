@@ -58,7 +58,12 @@ public class ProdutoMapper {
 
 
 	public static ProdutoResponse mapToProdutoResponse(ProdutoDto produtoDto) {
-		CategoriaDto categoria = produtoDto.getCategoria();
+		CategoriaDto categoria =null;
+
+		if (produtoDto != null){
+			categoria = produtoDto.getCategoria();
+		}
+
 
 		return ProdutoResponse.builder()
 				.id(produtoDto.getId())

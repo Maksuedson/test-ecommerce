@@ -1,0 +1,22 @@
+meta {
+  name: alterar produto
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:8080/api/produtos
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "id": "6b44d79c-d2a9-4b6d-8b4d-a38ecca9d05d",
+    "nome": "Luva de goleiro"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

@@ -3,6 +3,7 @@ package com.ecommerce.ecommerce.controller;
 import com.ecommerce.ecommerce.controller.response.ProdutoResponse;
 import com.ecommerce.ecommerce.dto.ClienteDto;
 import com.ecommerce.ecommerce.dto.ProdutoDto;
+import com.ecommerce.ecommerce.entity.Produto;
 import com.ecommerce.ecommerce.mapper.ProdutoMapper;
 import com.ecommerce.ecommerce.service.ProdutoService;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,13 @@ public class ProdutoController {
         ProdutoDto produtoSalvo = produtoService.cadastra(produtoDto);
         ProdutoResponse produtoResponse =  ProdutoMapper.mapToProdutoResponse(produtoSalvo);
         return new ResponseEntity<>(produtoResponse, HttpStatus.CREATED);
+    }
+
+    @PutMapping
+    public ResponseEntity<ProdutoResponse> alterar(@RequestBody ProdutoDto produtoDto){
+        ProdutoDto produtoAlterado = produtoService.alterar(produtoDto.getId(), produtoDto);
+        ProdutoResponse response = ProdutoMapper.mapToProdutoResponse(produtoAlterado);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{id}")

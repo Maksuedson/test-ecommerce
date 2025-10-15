@@ -4,6 +4,7 @@ import com.ecommerce.ecommerce.dto.ProdutoDto;
 import com.ecommerce.ecommerce.entity.Categoria;
 import com.ecommerce.ecommerce.entity.Cliente;
 import com.ecommerce.ecommerce.entity.Produto;
+import com.ecommerce.ecommerce.exception.NaoAlteradoException;
 import com.ecommerce.ecommerce.exception.NaoEncontradoException;
 import com.ecommerce.ecommerce.mapper.ProdutoMapper;
 import com.ecommerce.ecommerce.repository.CategoriaRepository;
@@ -56,8 +57,22 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public ProdutoDto alterar(Long id, ProdutoDto produtoDto) {
-        return null;
+    public ProdutoDto alterar(UUID id, ProdutoDto produtoDto) {
+        Produto produto = buscarPorId(id);
+
+        if (produto.getNome().equals(produtoDto.getNome())) {
+            throw new NaoAlteradoException("Categoria não foi alterado.");
+        }
+
+        produto.setNome(produtoDto.getNome());
+        produto.setCodigoBarras(produtoDto.getCodigoBarras());
+        produto.setPreco(produtoDto.getPreco());
+        produto.setEstoque(produto.getEstoque());
+        produto.setDataUltimaModificacao(LocalDateTime.now().withNano(0));
+
+        Produto produtoAtualizado = produtoRepository.save(produto);
+
+        return ProdutoMapper.mapToProdutoDto(produtoAtualizado);
     }
 
     @Override
