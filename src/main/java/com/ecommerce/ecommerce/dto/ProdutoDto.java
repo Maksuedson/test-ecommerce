@@ -18,6 +18,7 @@ public class ProdutoDto {
 
     private UUID id;
     private String nome;
+    private String descricao;
     private String codigoBarras;
     private BigDecimal preco;
     private CategoriaDto categoria;

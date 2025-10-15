@@ -22,6 +22,7 @@ public class Produto {
     @GeneratedValue
     private UUID id;
     private String nome;
+    private String descricao;
     private String codigoBarras;
     private BigDecimal preco;
 
