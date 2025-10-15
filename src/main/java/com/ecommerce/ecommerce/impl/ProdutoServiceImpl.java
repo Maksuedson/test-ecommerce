@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class ProdutoServiceImpl implements ProdutoService {
@@ -76,7 +77,14 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public List<ProdutoDto> listarProdutos() {
-        return null;
+        List<Produto> lista = produtoRepository.findAll();
+
+        if (lista.isEmpty()) {
+            throw new NaoEncontradoException("Produtos não encontrado!");
+        }
+        return lista.stream()
+                .map(ProdutoMapper::mapToProdutoDto)
+                .collect(Collectors.toList());
     }
 
     @Override
