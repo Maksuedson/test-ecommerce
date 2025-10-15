@@ -47,6 +47,11 @@ public class ProdutoController {
         return ResponseEntity.ok(produtoService.buscarProdutoPorNome(nome));
     }
 
+    @GetMapping("/codigo-barra/{codigoBarra}")
+    public ResponseEntity<ProdutoDto> buscarPorCodigoBarra(@PathVariable String codigoBarra){
+        return ResponseEntity.ok(produtoService.buscarProdutoPorCodigoBarras(codigoBarra));
+    }
+
     @GetMapping
     public ResponseEntity<List<ProdutoDto>> listar(){
         return ResponseEntity.ok(produtoService.listarProdutos());

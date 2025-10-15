@@ -84,7 +84,7 @@ public class ProdutoServiceImpl implements ProdutoService {
         List<Produto> lista = produtoRepository.findProdutoByName(nome);
 
         if (lista.isEmpty()) {
-            throw new NaoEncontradoException("Produtos não encontrado!");
+            throw new NaoEncontradoException(String.format("Produto(s) com nome '%s' não encontrado(s)!", nome));
         }
         return lista.stream()
                 .map(ProdutoMapper::mapToProdutoDto)
@@ -93,7 +93,13 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public ProdutoDto buscarProdutoPorCodigoBarras(String codigoBarras) {
-        return null;
+        Produto produto = produtoRepository.findProdutoByCodigoBarras(codigoBarras);
+
+        if (produto == null){
+            throw new NaoEncontradoException(String.format("Produto com código de barras '%s' não encontrado!", codigoBarras));
+        }
+
+        return ProdutoMapper.mapToProdutoDto(produto);
     }
 
     @Override

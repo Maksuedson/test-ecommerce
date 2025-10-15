@@ -1,0 +1,15 @@
+meta {
+  name: buscar produto por codigoBarras
+  type: http
+  seq: 7
+}
+
+get {
+  url: http://localhost:8080/api/produtos/codigo-barra/7891234567890
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

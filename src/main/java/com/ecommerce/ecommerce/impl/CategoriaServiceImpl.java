@@ -50,7 +50,7 @@ public class CategoriaServiceImpl implements CategoriaService {
         return categoriaRepository
                 .findById(id)
                 .orElseThrow(
-                        () -> new NaoEncontradoException("Categoria não existe"));
+                        () -> new NaoEncontradoException(String.format("Categorias(s) com id '%s' não encontrada(s)!", id)));
     }
 
     @Override
@@ -58,7 +58,7 @@ public class CategoriaServiceImpl implements CategoriaService {
         List<Categoria> lista = categoriaRepository.findByName(nome);
 
         if (lista.isEmpty()) {
-            throw new NaoEncontradoException("Categoria não encontrado!");
+            throw new NaoEncontradoException(String.format("Categorias(s) com nome '%s' não encontrada(s)!", nome));
         }
         return lista.stream()
                 .map(CategoriaMapper::mapToCategoriaDto)
