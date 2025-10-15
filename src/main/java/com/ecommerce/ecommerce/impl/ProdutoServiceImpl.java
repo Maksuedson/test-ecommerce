@@ -62,7 +62,14 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public List<ProdutoDto> buscarProdutoPorNome(String nome) {
-        return null;
+        List<Produto> lista = produtoRepository.findProdutoByName(nome);
+
+        if (lista.isEmpty()) {
+            throw new NaoEncontradoException("Produtos não encontrado!");
+        }
+        return lista.stream()
+                .map(ProdutoMapper::mapToProdutoDto)
+                .collect(Collectors.toList());
     }
 
     @Override

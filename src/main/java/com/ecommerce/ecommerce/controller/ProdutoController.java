@@ -1,6 +1,7 @@
 package com.ecommerce.ecommerce.controller;
 
 import com.ecommerce.ecommerce.controller.response.ProdutoResponse;
+import com.ecommerce.ecommerce.dto.ClienteDto;
 import com.ecommerce.ecommerce.dto.ProdutoDto;
 import com.ecommerce.ecommerce.mapper.ProdutoMapper;
 import com.ecommerce.ecommerce.service.ProdutoService;
@@ -31,6 +32,11 @@ public class ProdutoController {
     @GetMapping("/{id}")
     public ResponseEntity<ProdutoDto> buscarPorId(@PathVariable UUID id){
         return ResponseEntity.ok(produtoService.bucarProdutoPorId(id));
+    }
+
+    @GetMapping("/nome/{nome}")
+    public ResponseEntity<List<ProdutoDto>> buscarPorNome(@PathVariable String nome){
+        return ResponseEntity.ok(produtoService.buscarProdutoPorNome(nome));
     }
 
     @GetMapping

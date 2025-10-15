@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ProdutoRepository extends JpaRepository<Produto, UUID>{
 	
-	@Query("select p from Produto p where p.nome like %?1%")
+	@Query("select p from Produto p where p.nome ilike %?1%")
 	List<Produto> findProdutoByName(String nome);
 	
     @Query("select p from Produto p where p.codigoBarras = ?1")
