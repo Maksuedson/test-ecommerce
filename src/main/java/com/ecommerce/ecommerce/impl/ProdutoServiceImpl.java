@@ -64,9 +64,13 @@ public class ProdutoServiceImpl implements ProdutoService {
             throw new NaoAlteradoException("Categoria não foi alterado.");
         }
 
+        Categoria categoria = categoriaRepository.findById(produtoDto.getCategoria().getId())
+                .orElseThrow(() -> new NaoEncontradoException("Categoria não encontrada!"));
+
         produto.setNome(produtoDto.getNome());
         produto.setCodigoBarras(produtoDto.getCodigoBarras());
         produto.setPreco(produtoDto.getPreco());
+        produto.setCategoria(categoria);
         produto.setEstoque(produto.getEstoque());
         produto.setDataUltimaModificacao(LocalDateTime.now().withNano(0));
 

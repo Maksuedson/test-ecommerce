@@ -1,0 +1,25 @@
+meta {
+  name: alterar produto com categoria
+  type: http
+  seq: 6
+}
+
+put {
+  url: http://localhost:8080/api/produtos
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "id": "26800d5d-2150-4729-b14b-043464471ec9",
+    "nome": "Luva de goleiro",
+      "categoria":{
+      "id": 2
+    }
+  }
+}
+
+settings {
+  encodeUrl: true
+}
