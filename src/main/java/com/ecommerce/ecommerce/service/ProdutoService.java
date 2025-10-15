@@ -3,12 +3,13 @@ package com.ecommerce.ecommerce.service;
 import com.ecommerce.ecommerce.dto.ProdutoDto;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface ProdutoService {
 
 	ProdutoDto cadastra(ProdutoDto produtoDto);
 
-	ProdutoDto bucarProdutoPorId(Long id);
+	ProdutoDto bucarProdutoPorId(UUID id);
 
 	ProdutoDto alterar(Long id, ProdutoDto produtoDto);
 

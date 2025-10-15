@@ -6,10 +6,9 @@ import com.ecommerce.ecommerce.mapper.ProdutoMapper;
 import com.ecommerce.ecommerce.service.ProdutoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/produtos")
@@ -26,5 +25,10 @@ public class ProdutoController {
         ProdutoDto produtoSalvo = produtoService.cadastra(produtoDto);
         ProdutoResponse produtoResponse =  ProdutoMapper.mapToProdutoResponse(produtoSalvo);
         return new ResponseEntity<>(produtoResponse, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProdutoDto> buscarPorId(@PathVariable UUID id){
+        return ResponseEntity.ok(produtoService.bucarProdutoPorId(id));
     }
 }

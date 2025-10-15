@@ -20,7 +20,7 @@ public class ProdutoDto {
     private String nome;
     private String codigoBarras;
     private BigDecimal preco;
-    private Categoria categoria;
+    private CategoriaDto categoria;
     private BigDecimal estoque;
     private LocalDateTime dataCadastro;
     private LocalDateTime dataUltimaModificacao;
