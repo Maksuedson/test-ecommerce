@@ -30,6 +30,12 @@ public class ProdutoController {
         return new ResponseEntity<>(produtoResponse, HttpStatus.CREATED);
     }
 
+    @PostMapping("/lista")
+    public ResponseEntity<List<ProdutoDto>> salvarLista(@RequestBody List<ProdutoDto> produtoDto){
+        List<ProdutoDto> lista = produtoService.cadastrarLista(produtoDto);
+        return new ResponseEntity<>(lista, HttpStatus.CREATED);
+    }
+
     @PutMapping
     public ResponseEntity<ProdutoResponse> alterar(@RequestBody ProdutoDto produtoDto){
         ProdutoDto produtoAlterado = produtoService.alterar(produtoDto.getId(), produtoDto);
@@ -45,6 +51,11 @@ public class ProdutoController {
     @GetMapping("/nome/{nome}")
     public ResponseEntity<List<ProdutoDto>> buscarPorNome(@PathVariable String nome){
         return ResponseEntity.ok(produtoService.buscarProdutoPorNome(nome));
+    }
+
+    @GetMapping("/nome-ou-codigo-barras/{nomeOuCodigoBarras}")
+    public ResponseEntity<List<ProdutoDto>> buscarProdutoPorNomeOuCodigoBarras(@PathVariable String nomeOuCodigoBarras){
+        return ResponseEntity.ok(produtoService.buscarProdutoPorNomeOuCodigoBarras(nomeOuCodigoBarras));
     }
 
     @GetMapping("/codigo-barra/{codigoBarra}")

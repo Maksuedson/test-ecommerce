@@ -1,0 +1,48 @@
+meta {
+  name: salvar lista produto
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/api/produtos/lista
+  body: json
+  auth: inherit
+}
+
+body:json {
+  [
+    {
+      "nome": "Café Torrado e Moído",
+      "codigoBarras": "7891000055123",
+      "categoria": {
+        "id": 1
+      },
+      "estoque": 120.50,
+      "preco": 15.90
+    },
+    {
+      "nome": "Arroz Branco Tipo 1 - 5kg",
+      "codigoBarras": "7891910000197",
+      "categoria": {
+        "id": 1
+      },
+      "estoque": 75.00,
+      "preco": 22.49
+    },
+    {
+      "nome": "Detergente Neutro 500ml",
+      "codigoBarras": "7896004000135",
+      "categoria": {
+        "id": 1
+      },
+      "estoque": 300.00,
+      "preco": 2.99
+    }
+  ]
+  
+}
+
+settings {
+  encodeUrl: true
+}

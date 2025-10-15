@@ -15,6 +15,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, UUID>{
     @Query("select p from Produto p where p.codigoBarras = ?1")
     Produto findProdutoByCodigoBarras(String codigoBarras);
     
-    @Query("select p from Produto p where p.nome like %?1% or p.codigoBarras = ?1")
+    @Query("select p from Produto p where p.nome ilike %?1% or p.codigoBarras = ?1")
     List<Produto> findProdutoByNameOrCodigoBarras(String nomeOuCodigoBarras);
 }

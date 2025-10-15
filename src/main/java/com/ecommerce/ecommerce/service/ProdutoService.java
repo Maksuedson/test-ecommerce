@@ -9,6 +9,8 @@ public interface ProdutoService {
 
 	ProdutoDto cadastra(ProdutoDto produtoDto);
 
+	List<ProdutoDto> cadastrarLista(List<ProdutoDto> lista);
+
 	ProdutoDto bucarProdutoPorId(UUID id);
 
 	ProdutoDto alterar(UUID id, ProdutoDto produtoDto);

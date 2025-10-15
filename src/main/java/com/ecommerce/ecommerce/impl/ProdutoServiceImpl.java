@@ -44,6 +44,13 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
+    public List<ProdutoDto> cadastrarLista(List<ProdutoDto> lista) {
+        return lista.stream()
+                .map(this::cadastra)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public ProdutoDto bucarProdutoPorId(UUID id) {
         Produto produto = buscarPorId(id);
         return ProdutoMapper.mapToProdutoDto(produto);
@@ -104,7 +111,14 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public List<ProdutoDto> buscarProdutoPorNomeOuCodigoBarras(String nomeOuCodigoBarras) {
-        return null;
+        List<Produto> lista = produtoRepository.findProdutoByNameOrCodigoBarras(nomeOuCodigoBarras);
+
+        if (lista.isEmpty()) {
+            throw new NaoEncontradoException(String.format("Produto(s) com nome '%s' não encontrado(s)!", nomeOuCodigoBarras));
+        }
+        return lista.stream()
+                .map(ProdutoMapper::mapToProdutoDto)
+                .collect(Collectors.toList());
     }
 
     @Override
