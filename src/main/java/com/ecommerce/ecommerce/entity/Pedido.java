@@ -1,5 +1,6 @@
 package com.ecommerce.ecommerce.entity;
 
+import com.ecommerce.ecommerce.enums.Pagamento;
 import com.ecommerce.ecommerce.enums.PedidoSituacao;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -30,6 +31,9 @@ public class Pedido {
 
     @Enumerated(EnumType.STRING)
     private PedidoSituacao pedidoSituacao;
+
+    @Enumerated(EnumType.STRING)
+    private Pagamento pagamento;
     private String usuario;
     private String vendedor;
     private BigDecimal valorTotal;

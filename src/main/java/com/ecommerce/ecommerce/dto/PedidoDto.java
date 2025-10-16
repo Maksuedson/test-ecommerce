@@ -1,6 +1,7 @@
 package com.ecommerce.ecommerce.dto;
 
 import com.ecommerce.ecommerce.entity.Cliente;
+import com.ecommerce.ecommerce.enums.Pagamento;
 import com.ecommerce.ecommerce.enums.PedidoSituacao;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +22,7 @@ public class PedidoDto {
     private Long id;
     private Cliente cliente;
     private PedidoSituacao pedidoSituacao;
+    private Pagamento pagamento;
     private String usuario;
     private String vendedor;
     private BigDecimal valorTotal;
