@@ -133,7 +133,7 @@ public class ProdutoServiceImpl implements ProdutoService {
                 .collect(Collectors.toList());
     }
 
-    public Produto subtrairEstoque(UUID id, BigDecimal quantidade) {
+    public Boolean subtrairEstoque(UUID id, BigDecimal quantidade) {
         Produto produto = buscarPorId(id);
 
         if (quantidade.compareTo(BigDecimal.ZERO) <= 0) {
@@ -141,15 +141,17 @@ public class ProdutoServiceImpl implements ProdutoService {
         }
 
         if (produto.getEstoque().compareTo(quantidade) < 0) {
-            throw new IllegalArgumentException("Estoque insuficiente para subtrair a quantidade desejada.");
+            return false;
         }
 
         produto.setEstoque(produto.getEstoque().subtract(quantidade));
         produto.setDataUltimaModificacao(LocalDateTime.now().withNano(0));
 
-        return produtoRepository.save(produto);
+        produtoRepository.save(produto);
+
+        return true;
     }
-    public Produto somarEstoque(UUID id, BigDecimal quantidade) {
+    public Boolean somarEstoque(UUID id, BigDecimal quantidade) {
         Produto produto = buscarPorId(id);
 
         if (quantidade.compareTo(BigDecimal.ZERO) <= 0) {
@@ -157,13 +159,16 @@ public class ProdutoServiceImpl implements ProdutoService {
         }
 
         if (produto.getEstoque().compareTo(quantidade) < 0) {
-            throw new IllegalArgumentException("Estoque insuficiente para subtrair a quantidade desejada.");
+            return false;
+            //throw new IllegalArgumentException("Estoque insuficiente para subtrair a quantidade desejada.");
         }
 
         produto.setEstoque(produto.getEstoque().add(quantidade));
         produto.setDataUltimaModificacao(LocalDateTime.now().withNano(0));
 
-        return produtoRepository.save(produto);
+        produtoRepository.save(produto);
+
+        return true;
     }
 
 

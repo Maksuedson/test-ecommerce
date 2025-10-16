@@ -27,5 +27,5 @@ public interface ProdutoService {
 
 	void deleteById(Long id);
 
-    Produto subtrairEstoque(UUID id, BigDecimal quantidade);
+	Boolean subtrairEstoque(UUID id, BigDecimal quantidade);
 }

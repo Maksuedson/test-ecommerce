@@ -62,7 +62,16 @@ public class PedidoServiceImpl implements PedidoService {
 
                             BigDecimal quantidade = itemPedidoRequest.getQuantidade() != null ? itemPedidoRequest.getQuantidade() : BigDecimal.ZERO;
 
-                            produto = produtoService.subtrairEstoque(mappedItem.getProduto().getId(), quantidade);
+                            boolean estoqueSubtraido = produtoService.subtrairEstoque(mappedItem.getProduto().getId(), quantidade);
+
+                            produto = produtoRepository.findById(mappedItem.getProduto().getId())
+                                    .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+
+                            if (!estoqueSubtraido) {
+                                pedido.setPedidoSituacao(PedidoSituacao.CANCELADO);
+                            } else{
+                                pedido.setPedidoSituacao(PedidoSituacao.PENDENTE);
+                            }
 
                             mappedItem.setPreco(produto.getPreco());
                             mappedItem.setQuantidade(quantidade);
@@ -81,7 +90,6 @@ public class PedidoServiceImpl implements PedidoService {
         pedido.setUsuario("usuario");
         pedido.setVendedor("vendedor");
         pedido.setValorTotal(totalValorProdutos);
-        pedido.setPedidoSituacao(PedidoSituacao.PENDENTE);
         pedido.setItems(itens);
 
 
