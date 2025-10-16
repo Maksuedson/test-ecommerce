@@ -1,21 +1,16 @@
-package com.ecommerce.ecommerce.dto;
+package com.ecommerce.ecommerce.controller.request;
 
+import com.ecommerce.ecommerce.dto.ItemPedidoDto;
 import com.ecommerce.ecommerce.entity.Cliente;
 import com.ecommerce.ecommerce.enums.PedidoSituacao;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
-@Builder
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class PedidoDto {
+public class PedidoRequest {
     private static final long serialVersionUID = 1L;
 
     private Long id;
@@ -23,9 +18,5 @@ public class PedidoDto {
     private PedidoSituacao pedidoSituacao;
     private String usuario;
     private String vendedor;
-    private BigDecimal valorTotal;
     private List<ItemPedidoDto> items;
-    private LocalDateTime dataCadastro;
-    private LocalDateTime dataUltimaModificacao;
-    private LocalDateTime dataCancelamento;
 }

@@ -1,0 +1,39 @@
+meta {
+  name: salvar pedido
+  type: http
+  seq: 10
+}
+
+post {
+  url: http://localhost:8080/api/pedidos
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "cliente": {
+      "id": 1
+    },
+    "pedidoSituacao": "PENDENTE",
+    "usuario": "usuario",
+    "vendedor": "vendedor",
+    "items": [
+      {
+        "produtoId": 1,
+        "quantidade": 2,
+        "precoUnitario": 49.99
+      },
+      {
+        "produtoId": 2,
+        "quantidade": 1,
+        "precoUnitario": 99.90
+      }
+    ]
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+}

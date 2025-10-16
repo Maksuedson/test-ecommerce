@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CategoriaDto {
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String nome;

@@ -1,9 +1,7 @@
 package com.ecommerce.ecommerce.controller;
 
 import com.ecommerce.ecommerce.controller.response.ProdutoResponse;
-import com.ecommerce.ecommerce.dto.ClienteDto;
 import com.ecommerce.ecommerce.dto.ProdutoDto;
-import com.ecommerce.ecommerce.entity.Produto;
 import com.ecommerce.ecommerce.mapper.ProdutoMapper;
 import com.ecommerce.ecommerce.service.ProdutoService;
 import org.springframework.http.HttpStatus;

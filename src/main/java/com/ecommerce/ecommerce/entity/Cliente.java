@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Table(name = "cliente")
 @Entity
 public class Cliente {
-
     private static final long serialVersionUID = 1L;
 
     @Id

@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClienteDto {
-
     private static final long serialVersionUID = 1L;
 
     private Long id;
