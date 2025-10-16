@@ -1,4 +1,4 @@
-package com.ecommerce.ecommerce.impl;
+package com.ecommerce.ecommerce.service.impl;
 
 import com.ecommerce.ecommerce.controller.response.CategoriaResponse;
 import com.ecommerce.ecommerce.dto.CategoriaDto;

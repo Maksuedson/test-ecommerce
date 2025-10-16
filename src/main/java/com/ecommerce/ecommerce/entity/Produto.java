@@ -17,6 +17,7 @@ import java.util.UUID;
 @Table(name = "produto")
 @Entity
 public class Produto {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue

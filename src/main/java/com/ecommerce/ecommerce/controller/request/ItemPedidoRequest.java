@@ -1,24 +1,25 @@
-package com.ecommerce.ecommerce.dto;
+package com.ecommerce.ecommerce.controller.request;
 
+import com.ecommerce.ecommerce.entity.Pedido;
 import com.ecommerce.ecommerce.entity.Produto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoriaDto {
+public class ItemPedidoRequest {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    private String nome;
-    private List<Produto> produtos;
-    private LocalDateTime dataCadastro;
-    private LocalDateTime dataUltimaModificacao;
+    private BigDecimal preco;
+    private BigDecimal quantidade;
+    private BigDecimal valorTotal;
+    private Produto produto;
 }

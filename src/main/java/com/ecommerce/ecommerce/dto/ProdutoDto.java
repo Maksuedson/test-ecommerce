@@ -1,6 +1,5 @@
 package com.ecommerce.ecommerce.dto;
 
-import com.ecommerce.ecommerce.entity.Categoria;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProdutoDto {
+    private static final long serialVersionUID = 1L;
 
     private UUID id;
     private String nome;

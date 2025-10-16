@@ -14,6 +14,7 @@ import java.util.List;
 @Table(name = "categoria")
 @Entity
 public class Categoria {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

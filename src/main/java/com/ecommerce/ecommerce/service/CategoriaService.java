@@ -2,7 +2,6 @@ package com.ecommerce.ecommerce.service;
 
 import com.ecommerce.ecommerce.controller.response.CategoriaResponse;
 import com.ecommerce.ecommerce.dto.CategoriaDto;
-import com.ecommerce.ecommerce.dto.ClienteDto;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.ecommerce.ecommerce.impl;
+package com.ecommerce.ecommerce.service.impl;
 
 import com.ecommerce.ecommerce.dto.ClienteDto;
 import com.ecommerce.ecommerce.entity.Cliente;

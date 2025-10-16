@@ -1,8 +1,7 @@
-package com.ecommerce.ecommerce.impl;
+package com.ecommerce.ecommerce.service.impl;
 
 import com.ecommerce.ecommerce.dto.ProdutoDto;
 import com.ecommerce.ecommerce.entity.Categoria;
-import com.ecommerce.ecommerce.entity.Cliente;
 import com.ecommerce.ecommerce.entity.Produto;
 import com.ecommerce.ecommerce.exception.NaoAlteradoException;
 import com.ecommerce.ecommerce.exception.NaoEncontradoException;
