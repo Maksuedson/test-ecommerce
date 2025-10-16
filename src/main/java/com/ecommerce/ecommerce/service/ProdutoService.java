@@ -1,7 +1,9 @@
 package com.ecommerce.ecommerce.service;
 
 import com.ecommerce.ecommerce.dto.ProdutoDto;
+import com.ecommerce.ecommerce.entity.Produto;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,4 +26,6 @@ public interface ProdutoService {
 	List<ProdutoDto> listarProdutos();
 
 	void deleteById(Long id);
+
+    Produto subtrairEstoque(UUID id, BigDecimal quantidade);
 }

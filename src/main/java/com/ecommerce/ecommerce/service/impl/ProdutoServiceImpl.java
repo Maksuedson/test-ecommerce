@@ -12,6 +12,7 @@ import com.ecommerce.ecommerce.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -131,6 +132,40 @@ public class ProdutoServiceImpl implements ProdutoService {
                 .map(ProdutoMapper::mapToProdutoDto)
                 .collect(Collectors.toList());
     }
+
+    public Produto subtrairEstoque(UUID id, BigDecimal quantidade) {
+        Produto produto = buscarPorId(id);
+
+        if (quantidade.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("A quantidade a subtrair deve ser maior que zero.");
+        }
+
+        if (produto.getEstoque().compareTo(quantidade) < 0) {
+            throw new IllegalArgumentException("Estoque insuficiente para subtrair a quantidade desejada.");
+        }
+
+        produto.setEstoque(produto.getEstoque().subtract(quantidade));
+        produto.setDataUltimaModificacao(LocalDateTime.now().withNano(0));
+
+        return produtoRepository.save(produto);
+    }
+    public Produto somarEstoque(UUID id, BigDecimal quantidade) {
+        Produto produto = buscarPorId(id);
+
+        if (quantidade.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("A quantidade a subtrair deve ser maior que zero.");
+        }
+
+        if (produto.getEstoque().compareTo(quantidade) < 0) {
+            throw new IllegalArgumentException("Estoque insuficiente para subtrair a quantidade desejada.");
+        }
+
+        produto.setEstoque(produto.getEstoque().add(quantidade));
+        produto.setDataUltimaModificacao(LocalDateTime.now().withNano(0));
+
+        return produtoRepository.save(produto);
+    }
+
 
     @Override
     public void deleteById(Long id) {

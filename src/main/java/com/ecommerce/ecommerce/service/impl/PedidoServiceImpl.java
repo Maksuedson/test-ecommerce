@@ -16,6 +16,7 @@ import com.ecommerce.ecommerce.repository.PedidoRepository;
 import com.ecommerce.ecommerce.repository.ProdutoRepository;
 import com.ecommerce.ecommerce.service.ClienteService;
 import com.ecommerce.ecommerce.service.PedidoService;
+import com.ecommerce.ecommerce.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,9 @@ import java.util.List;
 public class PedidoServiceImpl implements PedidoService {
 
     private PedidoRepository pedidoRepository;
+
+    @Autowired
+    private ProdutoService produtoService;
 
     @Autowired
     private ProdutoRepository produtoRepository;
@@ -58,6 +62,8 @@ public class PedidoServiceImpl implements PedidoService {
 
                             BigDecimal quantidade = itemPedidoRequest.getQuantidade() != null ? itemPedidoRequest.getQuantidade() : BigDecimal.ZERO;
 
+                            produto = produtoService.subtrairEstoque(mappedItem.getProduto().getId(), quantidade);
+
                             mappedItem.setPreco(produto.getPreco());
                             mappedItem.setQuantidade(quantidade);
                             mappedItem.setDataCadastro(LocalDateTime.now().withNano(0));
@@ -77,6 +83,7 @@ public class PedidoServiceImpl implements PedidoService {
         pedido.setValorTotal(totalValorProdutos);
         pedido.setPedidoSituacao(PedidoSituacao.PENDENTE);
         pedido.setItems(itens);
+
 
         Pedido pedidoSalvo = pedidoRepository.save(pedido);
 
