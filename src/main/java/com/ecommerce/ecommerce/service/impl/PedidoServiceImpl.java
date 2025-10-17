@@ -64,9 +64,6 @@ public class PedidoServiceImpl implements PedidoService {
 
                             boolean estoqueSubtraido = produtoService.subtrairEstoque(mappedItem.getProduto().getId(), quantidade);
 
-                            produto = produtoRepository.findById(mappedItem.getProduto().getId())
-                                    .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
-
                             if (!estoqueSubtraido) {
                                 pedido.setPedidoSituacao(PedidoSituacao.CANCELADO);
                             } else{

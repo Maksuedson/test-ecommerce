@@ -3,6 +3,7 @@ package com.ecommerce.ecommerce.service.impl;
 import com.ecommerce.ecommerce.dto.ProdutoDto;
 import com.ecommerce.ecommerce.entity.Categoria;
 import com.ecommerce.ecommerce.entity.Produto;
+import com.ecommerce.ecommerce.exception.IntegridadeException;
 import com.ecommerce.ecommerce.exception.NaoAlteradoException;
 import com.ecommerce.ecommerce.exception.NaoEncontradoException;
 import com.ecommerce.ecommerce.mapper.ProdutoMapper;
@@ -10,6 +11,7 @@ import com.ecommerce.ecommerce.repository.CategoriaRepository;
 import com.ecommerce.ecommerce.repository.ProdutoRepository;
 import com.ecommerce.ecommerce.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -173,7 +175,13 @@ public class ProdutoServiceImpl implements ProdutoService {
 
 
     @Override
-    public void deleteById(Long id) {
-
+    public void deleteById(UUID id) {
+        buscarPorId(id);
+        try {
+            produtoRepository.deleteById(id);
+        } catch (DataIntegrityViolationException ex) {
+            throw new IntegridadeException(
+                    "Não é possível excluir o produto porque ele está sendo referenciada por outros registros.");
+        }
     }
 }

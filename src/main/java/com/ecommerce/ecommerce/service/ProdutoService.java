@@ -25,7 +25,7 @@ public interface ProdutoService {
 
 	List<ProdutoDto> listarProdutos();
 
-	void deleteById(Long id);
+	void deleteById(UUID id);
 
 	Boolean subtrairEstoque(UUID id, BigDecimal quantidade);
 }

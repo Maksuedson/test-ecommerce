@@ -66,4 +66,10 @@ public class ProdutoController {
         return ResponseEntity.ok(produtoService.listarProdutos());
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleta(@PathVariable UUID id){
+        produtoService.deleteById(id);
+        return ResponseEntity.ok("Produto excluido com sucesso!");
+    }
+
 }
