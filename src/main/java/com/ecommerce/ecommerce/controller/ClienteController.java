@@ -1,7 +1,7 @@
 package com.ecommerce.ecommerce.controller;
 
 import com.ecommerce.ecommerce.dto.ClienteDto;
-import com.ecommerce.ecommerce.service.ClienteService;
+import com.ecommerce.ecommerce.service.interfaces.ClienteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

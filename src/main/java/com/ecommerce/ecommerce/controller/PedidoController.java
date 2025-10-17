@@ -2,7 +2,7 @@ package com.ecommerce.ecommerce.controller;
 
 import com.ecommerce.ecommerce.controller.request.PedidoRequest;
 import com.ecommerce.ecommerce.dto.PedidoDto;
-import com.ecommerce.ecommerce.service.PedidoService;
+import com.ecommerce.ecommerce.service.interfaces.PedidoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

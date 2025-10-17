@@ -9,7 +9,7 @@ import com.ecommerce.ecommerce.exception.NaoEncontradoException;
 import com.ecommerce.ecommerce.mapper.ProdutoMapper;
 import com.ecommerce.ecommerce.repository.CategoriaRepository;
 import com.ecommerce.ecommerce.repository.ProdutoRepository;
-import com.ecommerce.ecommerce.service.ProdutoService;
+import com.ecommerce.ecommerce.service.interfaces.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;

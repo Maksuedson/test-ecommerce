@@ -3,7 +3,7 @@ package com.ecommerce.ecommerce.controller;
 import com.ecommerce.ecommerce.controller.response.CategoriaResponse;
 import com.ecommerce.ecommerce.dto.CategoriaDto;
 import com.ecommerce.ecommerce.mapper.CategoriaMapper;
-import com.ecommerce.ecommerce.service.CategoriaService;
+import com.ecommerce.ecommerce.service.interfaces.CategoriaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

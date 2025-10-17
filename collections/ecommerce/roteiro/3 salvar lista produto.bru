@@ -1,0 +1,71 @@
+meta {
+  name: 3 salvar lista produto
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8080/api/produtos/lista
+  body: json
+  auth: inherit
+}
+
+body:json {
+  [
+    {
+      "nome": "Notebook Dell Inspiron",
+      "descricao": "Notebook com processador Intel i7, 16GB RAM, SSD 512GB",
+      "codigoBarras": "7891234567890",
+      "categoria": {
+        "id": 1
+      },
+      "estoque": 25.00,
+      "preco": 5000.0
+    },
+    {
+      "nome": "Smartphone Samsung Galaxy S21",
+      "descricao": "Smartphone Android com 128GB de armazenamento",
+      "codigoBarras": "7896543219870",
+      "categoria": {
+        "id": 1
+      },
+      "estoque": 50.00,
+      "preco": 3499.00
+    },
+    {
+      "nome": "Cadeira Gamer",
+      "descricao": "Cadeira ergonômica para jogos e escritório",
+      "codigoBarras": "7893216549870",
+      "categoria": {
+        "id": 1
+      },
+      "estoque": 10.00,
+      "preco": 999.90
+    },
+    {
+      "nome": "Mouse Logitech MX Master 3",
+      "descricao": "Mouse sem fio com alta precisão e bateria de longa duração",
+      "codigoBarras": "7894561237890",
+      "categoria": {
+        "id": 1
+      },
+      "estoque": 100.00,
+      "preco": 459.99
+    },
+    {
+      "nome": "TV 55\" 4K Samsung",
+      "descricao": "Smart TV com resolução 4K e HDR",
+      "codigoBarras": "7899876543210",
+      "categoria": {
+        "id": 1
+      },
+      "estoque": 15.00,
+      "preco": 2799.00
+    }
+  ]
+  
+}
+
+settings {
+  encodeUrl: true
+}

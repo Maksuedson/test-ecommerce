@@ -1,0 +1,36 @@
+meta {
+  name: 4 salvar pedido
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8080/api/pedidos
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "cliente": {
+      "id": 1
+    },
+    "pedidoSituacao": "PENDENTE",
+    "pagamento": "PIX",
+    "usuario": "usuario",
+    "vendedor": "vendedor",
+    "items": [
+      {
+        "produto": {
+          "id": "a2bbf6bb-8dac-422e-bae6-8e216a5ea202"
+        },
+        "quantidade": 10
+      }
+    ]
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+}

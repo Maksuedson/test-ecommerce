@@ -1,0 +1,21 @@
+meta {
+  name: 2 salvar categoria
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/api/categorias
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+     "nome": "Eletrônicos"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

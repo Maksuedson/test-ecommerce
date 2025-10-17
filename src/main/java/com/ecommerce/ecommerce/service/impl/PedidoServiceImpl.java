@@ -14,9 +14,9 @@ import com.ecommerce.ecommerce.mapper.PedidoMapper;
 import com.ecommerce.ecommerce.repository.ClienteRepository;
 import com.ecommerce.ecommerce.repository.PedidoRepository;
 import com.ecommerce.ecommerce.repository.ProdutoRepository;
-import com.ecommerce.ecommerce.service.ClienteService;
-import com.ecommerce.ecommerce.service.PedidoService;
-import com.ecommerce.ecommerce.service.ProdutoService;
+import com.ecommerce.ecommerce.service.interfaces.ClienteService;
+import com.ecommerce.ecommerce.service.interfaces.PedidoService;
+import com.ecommerce.ecommerce.service.interfaces.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

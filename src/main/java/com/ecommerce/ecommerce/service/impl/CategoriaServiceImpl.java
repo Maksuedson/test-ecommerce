@@ -8,7 +8,7 @@ import com.ecommerce.ecommerce.exception.NaoAlteradoException;
 import com.ecommerce.ecommerce.exception.NaoEncontradoException;
 import com.ecommerce.ecommerce.mapper.CategoriaMapper;
 import com.ecommerce.ecommerce.repository.CategoriaRepository;
-import com.ecommerce.ecommerce.service.CategoriaService;
+import com.ecommerce.ecommerce.service.interfaces.CategoriaService;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 

@@ -7,7 +7,7 @@ import com.ecommerce.ecommerce.exception.NaoAlteradoException;
 import com.ecommerce.ecommerce.exception.NaoEncontradoException;
 import com.ecommerce.ecommerce.mapper.ClienteMapper;
 import com.ecommerce.ecommerce.repository.ClienteRepository;
-import com.ecommerce.ecommerce.service.ClienteService;
+import com.ecommerce.ecommerce.service.interfaces.ClienteService;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
