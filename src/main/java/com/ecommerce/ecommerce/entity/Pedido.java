@@ -2,7 +2,6 @@ package com.ecommerce.ecommerce.entity;
 
 import com.ecommerce.ecommerce.enums.Pagamento;
 import com.ecommerce.ecommerce.enums.PedidoSituacao;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,7 +33,10 @@ public class Pedido {
 
     @Enumerated(EnumType.STRING)
     private Pagamento pagamento;
-    private String usuario;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
     private String vendedor;
     private BigDecimal valorTotal;
 

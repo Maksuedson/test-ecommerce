@@ -9,6 +9,10 @@ import com.ecommerce.ecommerce.entity.Categoria;
 import com.ecommerce.ecommerce.entity.Produto;
 import lombok.experimental.UtilityClass;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @UtilityClass
 public class ProdutoMapper {
 
@@ -83,5 +87,14 @@ public class ProdutoMapper {
 				)
 				.dataCadastro(produtoDto.getDataCadastro())
 				.build();
+	}
+	public static List<ProdutoResponse> toResponseList(List<ProdutoDto> produtoDtoList) {
+		if (produtoDtoList == null || produtoDtoList.isEmpty()) {
+			return Collections.emptyList();
+		}
+
+		return produtoDtoList.stream()
+				.map(ProdutoMapper::mapToProdutoResponse)
+				.collect(Collectors.toList());
 	}
 }

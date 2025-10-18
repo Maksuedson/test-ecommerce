@@ -1,5 +1,7 @@
-package com.ecommerce.ecommerce.dto;
+package com.ecommerce.ecommerce.controller.response;
 
+import com.ecommerce.ecommerce.dto.ClienteDto;
+import com.ecommerce.ecommerce.dto.ItemPedidoDto;
 import com.ecommerce.ecommerce.entity.Cliente;
 import com.ecommerce.ecommerce.entity.Usuario;
 import com.ecommerce.ecommerce.enums.Pagamento;
@@ -17,18 +19,16 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PedidoDto {
+public class PedidoResponse {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    private ClienteDto cliente;
+    private ClienteResponse cliente;
     private PedidoSituacao pedidoSituacao;
     private Pagamento pagamento;
-    private UsuarioDto usuario;
+    private UsuarioResponse usuario;
     private String vendedor;
     private BigDecimal valorTotal;
-    private List<ItemPedidoDto> items;
+    private List<ItemPedidoResponse> items;
     private LocalDateTime dataCadastro;
-    private LocalDateTime dataUltimaModificacao;
-    private LocalDateTime dataCancelamento;
 }

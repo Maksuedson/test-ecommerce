@@ -1,6 +1,7 @@
 package com.ecommerce.ecommerce.mapper;
 
 import com.ecommerce.ecommerce.controller.request.ItemPedidoRequest;
+import com.ecommerce.ecommerce.controller.response.ItemPedidoResponse;
 import com.ecommerce.ecommerce.dto.ItemPedidoDto;
 import com.ecommerce.ecommerce.entity.ItemPedido;
 
@@ -14,7 +15,18 @@ public class ItemPedidoMapper {
                 .dataUltimaModificacao(itemPedidoDto.getDataUltimaModificacao())
                 .quantidade(itemPedidoDto.getQuantidade())
                 .valorTotal(itemPedidoDto.getValorTotal())
-                .produto(itemPedidoDto.getProduto())
+                .produto(ProdutoMapper.mapToProduto(itemPedidoDto.getProduto()))
+                .build();
+    }
+
+    public static ItemPedidoResponse ToResponse (ItemPedidoDto itemPedidoDto){
+
+        return ItemPedidoResponse.builder()
+                .preco(itemPedidoDto.getPreco())
+                .dataCadastro(itemPedidoDto.getDataCadastro())
+                .quantidade(itemPedidoDto.getQuantidade())
+                .valorTotal(itemPedidoDto.getValorTotal())
+                .produto(ProdutoMapper.mapToProdutoResponse(itemPedidoDto.getProduto()))
                 .build();
     }
 
@@ -26,7 +38,7 @@ public class ItemPedidoMapper {
                 .dataUltimaModificacao(itemPedido.getDataUltimaModificacao())
                 .quantidade(itemPedido.getQuantidade())
                 .valorTotal(itemPedido.getValorTotal())
-                .produto(itemPedido.getProduto())
+                .produto(ProdutoMapper.mapToProdutoDto(itemPedido.getProduto()))
                 .build();
     }
 

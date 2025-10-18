@@ -1,4 +1,4 @@
-package com.ecommerce.ecommerce.dto;
+package com.ecommerce.ecommerce.controller.response;
 
 import com.ecommerce.ecommerce.entity.Pedido;
 import com.ecommerce.ecommerce.entity.Produto;
@@ -14,15 +14,13 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemPedidoDto {
+public class ItemPedidoResponse {
     private static final long serialVersionUID = 1L;
 
     private Long id;
     private BigDecimal preco;
     private LocalDateTime dataCadastro;
-    private LocalDateTime dataUltimaModificacao;
     private BigDecimal quantidade;
     private BigDecimal valorTotal;
-    private ProdutoDto produto;
-    private Pedido pedido;
+    private ProdutoResponse produto;
 }

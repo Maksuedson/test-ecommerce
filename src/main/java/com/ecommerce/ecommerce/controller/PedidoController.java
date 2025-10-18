@@ -1,7 +1,9 @@
 package com.ecommerce.ecommerce.controller;
 
 import com.ecommerce.ecommerce.controller.request.PedidoRequest;
+import com.ecommerce.ecommerce.controller.response.PedidoResponse;
 import com.ecommerce.ecommerce.dto.PedidoDto;
+import com.ecommerce.ecommerce.mapper.PedidoMapper;
 import com.ecommerce.ecommerce.service.interfaces.PedidoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +23,9 @@ public class PedidoController {
     }
 
     @PostMapping
-    public ResponseEntity<PedidoDto> efetuarPedido(@RequestBody PedidoRequest request){
+    public ResponseEntity<PedidoResponse> efetuarPedido(@RequestBody PedidoRequest request){
         PedidoDto pedido = pedidoService.efetuarPedido(request);
-        return new ResponseEntity<>(pedido, HttpStatus.CREATED);
+        return new ResponseEntity<>(PedidoMapper.toResponse(pedido), HttpStatus.CREATED);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.ecommerce.ecommerce.mapper;
 
+import com.ecommerce.ecommerce.controller.response.ClienteResponse;
 import com.ecommerce.ecommerce.dto.ClienteDto;
 import com.ecommerce.ecommerce.entity.Cliente;
 import lombok.experimental.UtilityClass;
@@ -24,6 +25,23 @@ public class ClienteMapper {
 				clienteDto.getDataUltimaModificacao()
 				);
 	}
+
+	public static ClienteResponse toResponse(ClienteDto clienteDto) {
+		return new ClienteResponse(
+				clienteDto.getId(),
+				clienteDto.getNome(),
+				clienteDto.getEndereco(),
+				clienteDto.getNumero(),
+				clienteDto.getBairro(),
+				clienteDto.getCep(),
+				clienteDto.getCidade(),
+				clienteDto.getEstado(),
+				clienteDto.getTelefone(),
+				clienteDto.getCelular(),
+				clienteDto.getEmail(),
+				clienteDto.getDataCadastro()
+		);
+	}
 	
 	public static ClienteDto mapToClienteDto(Cliente cliente) {
 		return new ClienteDto(
@@ -42,5 +60,6 @@ public class ClienteMapper {
 				cliente.getDataUltimaModificacao()
 				);
 	}
+
 }
 ;

@@ -29,9 +29,10 @@ public class ProdutoController {
     }
 
     @PostMapping("/lista")
-    public ResponseEntity<List<ProdutoDto>> salvarLista(@RequestBody List<ProdutoDto> produtoDto){
+    public ResponseEntity<List<ProdutoResponse>> salvarLista(@RequestBody List<ProdutoDto> produtoDto){
         List<ProdutoDto> lista = produtoService.cadastrarLista(produtoDto);
-        return new ResponseEntity<>(lista, HttpStatus.CREATED);
+
+        return new ResponseEntity<>(ProdutoMapper.toResponseList(lista), HttpStatus.CREATED);
     }
 
     @PutMapping

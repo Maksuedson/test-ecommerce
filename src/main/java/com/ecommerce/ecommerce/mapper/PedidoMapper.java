@@ -1,10 +1,13 @@
 package com.ecommerce.ecommerce.mapper;
 
 import com.ecommerce.ecommerce.controller.request.PedidoRequest;
+import com.ecommerce.ecommerce.controller.response.ItemPedidoResponse;
+import com.ecommerce.ecommerce.controller.response.PedidoResponse;
 import com.ecommerce.ecommerce.dto.ItemPedidoDto;
 import com.ecommerce.ecommerce.dto.PedidoDto;
 import com.ecommerce.ecommerce.entity.ItemPedido;
 import com.ecommerce.ecommerce.entity.Pedido;
+import com.ecommerce.ecommerce.entity.Usuario;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,10 +22,10 @@ public class PedidoMapper {
 
         return PedidoDto.builder()
                 .id(pedido.getId())
-                .cliente(pedido.getCliente())
+                .cliente(ClienteMapper.mapToClienteDto(pedido.getCliente()))
                 .pedidoSituacao(pedido.getPedidoSituacao())
                 .pagamento(pedido.getPagamento())
-                .usuario(pedido.getUsuario())
+                .usuario(UsuarioMapper.toDto(pedido.getUsuario()))
                 .vendedor(pedido.getVendedor())
                 .valorTotal(pedido.getValorTotal())
                 .items(itens)
@@ -40,16 +43,35 @@ public class PedidoMapper {
 
         return Pedido.builder()
                 .id(pedidoDto.getId())
-                .cliente(pedidoDto.getCliente())
+                .cliente(ClienteMapper.mapToCliente(pedidoDto.getCliente()))
                 .pedidoSituacao(pedidoDto.getPedidoSituacao())
                 .pagamento(pedidoDto.getPagamento())
-                .usuario(pedidoDto.getUsuario())
+                .usuario(UsuarioMapper.toEntity(pedidoDto.getUsuario()))
                 .vendedor(pedidoDto.getVendedor())
                 .valorTotal(pedidoDto.getValorTotal())
                 .items(itens)
                 .dataCadastro(pedidoDto.getDataCadastro())
                 .dataUltimaModificacao(pedidoDto.getDataUltimaModificacao())
                 .dataCancelamento(pedidoDto.getDataCancelamento())
+                .build();
+    }
+
+    public static PedidoResponse toResponse(PedidoDto pedidoDto) {
+
+        List<ItemPedidoResponse> itens = pedidoDto.getItems() != null ? pedidoDto.getItems().stream()
+                .map(ItemPedidoMapper::ToResponse)
+                .collect(Collectors.toList()) : null;
+
+        return PedidoResponse.builder()
+                .id(pedidoDto.getId())
+                .cliente(ClienteMapper.toResponse(pedidoDto.getCliente()))
+                .pedidoSituacao(pedidoDto.getPedidoSituacao())
+                .pagamento(pedidoDto.getPagamento())
+                .usuario(UsuarioMapper.toResponse(pedidoDto.getUsuario()))
+                .vendedor(pedidoDto.getVendedor())
+                .valorTotal(pedidoDto.getValorTotal())
+                .items(itens)
+                .dataCadastro(pedidoDto.getDataCadastro())
                 .build();
     }
 
@@ -61,10 +83,10 @@ public class PedidoMapper {
 
         return Pedido.builder()
                 .id(request.getId())
-                .cliente(request.getCliente())
+                .cliente(ClienteMapper.mapToCliente(request.getCliente()))
                 .pedidoSituacao(request.getPedidoSituacao())
                 .pagamento(request.getPagamento())
-                .usuario(request.getUsuario())
+                .usuario(UsuarioMapper.toEntity(request.getUsuario()))
                 .vendedor(request.getVendedor())
                 .items(itens)
                 .build();

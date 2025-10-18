@@ -2,11 +2,9 @@ package com.ecommerce.ecommerce.service.impl;
 
 import com.ecommerce.ecommerce.controller.request.PedidoRequest;
 import com.ecommerce.ecommerce.dto.ClienteDto;
-import com.ecommerce.ecommerce.entity.Cliente;
-import com.ecommerce.ecommerce.entity.ItemPedido;
-import com.ecommerce.ecommerce.entity.Pedido;
+import com.ecommerce.ecommerce.dto.UsuarioDto;
+import com.ecommerce.ecommerce.entity.*;
 import com.ecommerce.ecommerce.dto.PedidoDto;
-import com.ecommerce.ecommerce.entity.Produto;
 import com.ecommerce.ecommerce.enums.PedidoSituacao;
 import com.ecommerce.ecommerce.mapper.ClienteMapper;
 import com.ecommerce.ecommerce.mapper.ItemPedidoMapper;
@@ -14,9 +12,11 @@ import com.ecommerce.ecommerce.mapper.PedidoMapper;
 import com.ecommerce.ecommerce.repository.ClienteRepository;
 import com.ecommerce.ecommerce.repository.PedidoRepository;
 import com.ecommerce.ecommerce.repository.ProdutoRepository;
+import com.ecommerce.ecommerce.repository.UsuarioRepository;
 import com.ecommerce.ecommerce.service.interfaces.ClienteService;
 import com.ecommerce.ecommerce.service.interfaces.PedidoService;
 import com.ecommerce.ecommerce.service.interfaces.ProdutoService;
+import com.ecommerce.ecommerce.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +41,12 @@ public class PedidoServiceImpl implements PedidoService {
     @Autowired
     private ClienteService clienteService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     public  PedidoServiceImpl(PedidoRepository pedidoRepository){
         this.pedidoRepository = pedidoRepository;
     }
@@ -52,6 +58,9 @@ public class PedidoServiceImpl implements PedidoService {
         Cliente cliente = ClienteMapper.mapToCliente(clienteDto);
 
         Pedido pedido = PedidoMapper.toEntity(pedidoRequest);
+
+        Usuario usuario = usuarioRepository.findById(pedido.getUsuario().getId())
+                .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
 
         List<ItemPedido> itens = pedidoRequest.getItems().stream()
                 .map(itemPedidoRequest -> {
@@ -84,8 +93,8 @@ public class PedidoServiceImpl implements PedidoService {
 
         pedido.setCliente(cliente);
         pedido.setDataCadastro(LocalDateTime.now().withNano(0));
-        pedido.setUsuario("usuario");
-        pedido.setVendedor("vendedor");
+        pedido.setUsuario(usuario);
+        pedido.setVendedor(usuario.getUsername());
         pedido.setValorTotal(totalValorProdutos);
         pedido.setItems(itens);
 
