@@ -1,5 +1,6 @@
 package com.ecommerce.ecommerce.mapper;
 
+import com.ecommerce.ecommerce.controller.request.ClienteRequest;
 import com.ecommerce.ecommerce.controller.response.ClienteResponse;
 import com.ecommerce.ecommerce.dto.ClienteDto;
 import com.ecommerce.ecommerce.entity.Cliente;
@@ -59,6 +60,22 @@ public class ClienteMapper {
 				cliente.getDataCadastro(),
 				cliente.getDataUltimaModificacao()
 				);
+	}
+
+	public static ClienteDto mapToClienteDto(ClienteRequest request) {
+		return new ClienteDto(
+				request.getId(),
+				request.getNome(),
+				request.getEndereco(),
+				request.getNumero(),
+				request.getBairro(),
+				request.getCep(),
+				request.getCidade(),
+				request.getEstado(),
+				request.getTelefone(),
+				request.getCelular(),
+				request.getEmail()
+		);
 	}
 
 }

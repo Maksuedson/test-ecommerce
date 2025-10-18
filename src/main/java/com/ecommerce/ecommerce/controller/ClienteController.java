@@ -1,6 +1,9 @@
 package com.ecommerce.ecommerce.controller;
 
+import com.ecommerce.ecommerce.controller.request.ClienteRequest;
+import com.ecommerce.ecommerce.controller.response.ClienteResponse;
 import com.ecommerce.ecommerce.dto.ClienteDto;
+import com.ecommerce.ecommerce.mapper.ClienteMapper;
 import com.ecommerce.ecommerce.service.interfaces.ClienteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +22,9 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<ClienteDto> salvaCliente(@RequestBody ClienteDto clienteDto){
-        ClienteDto savedClienteDto = clienteService.cadastrar(clienteDto);
-        return new ResponseEntity<>(savedClienteDto, HttpStatus.CREATED);
+    public ResponseEntity<ClienteResponse> salvaCliente(@RequestBody ClienteRequest request){
+        ClienteDto savedClienteDto = clienteService.cadastrar(ClienteMapper.mapToClienteDto(request));
+        return new ResponseEntity<>(ClienteMapper.toResponse(savedClienteDto), HttpStatus.CREATED);
     }
 
     @PostMapping("/lista")
