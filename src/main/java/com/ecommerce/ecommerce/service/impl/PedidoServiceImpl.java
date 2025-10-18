@@ -2,13 +2,12 @@ package com.ecommerce.ecommerce.service.impl;
 
 import com.ecommerce.ecommerce.controller.request.PedidoRequest;
 import com.ecommerce.ecommerce.dto.ClienteDto;
+import com.ecommerce.ecommerce.dto.ProdutoDto;
 import com.ecommerce.ecommerce.dto.UsuarioDto;
 import com.ecommerce.ecommerce.entity.*;
 import com.ecommerce.ecommerce.dto.PedidoDto;
 import com.ecommerce.ecommerce.enums.PedidoSituacao;
-import com.ecommerce.ecommerce.mapper.ClienteMapper;
-import com.ecommerce.ecommerce.mapper.ItemPedidoMapper;
-import com.ecommerce.ecommerce.mapper.PedidoMapper;
+import com.ecommerce.ecommerce.mapper.*;
 import com.ecommerce.ecommerce.repository.ClienteRepository;
 import com.ecommerce.ecommerce.repository.PedidoRepository;
 import com.ecommerce.ecommerce.repository.ProdutoRepository;
@@ -59,18 +58,17 @@ public class PedidoServiceImpl implements PedidoService {
 
         Pedido pedido = PedidoMapper.toEntity(pedidoRequest);
 
-        Usuario usuario = usuarioRepository.findById(pedido.getUsuario().getId())
-                .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
+        UsuarioDto usuarioDto = usuarioService.buscaUsuarioPorId(pedido.getUsuario().getId());
+        Usuario usuario = UsuarioMapper.toEntity(usuarioDto);
 
         List<ItemPedido> itens = pedidoRequest.getItems().stream()
                 .map(itemPedidoRequest -> {
                     ItemPedido mappedItem = ItemPedidoMapper.ToEntity(itemPedidoRequest);
 
-                            Produto produto = produtoRepository.findById(mappedItem.getProduto().getId())
-                                    .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+                    ProdutoDto produtoDto = produtoService.bucarProdutoPorId(mappedItem.getProduto().getId());
+                    Produto produto = ProdutoMapper.mapToProduto(produtoDto);
 
                             BigDecimal quantidade = itemPedidoRequest.getQuantidade() != null ? itemPedidoRequest.getQuantidade() : BigDecimal.ZERO;
-
                             boolean estoqueSubtraido = produtoService.subtrairEstoque(mappedItem.getProduto().getId(), quantidade);
 
                             if (!estoqueSubtraido) {
