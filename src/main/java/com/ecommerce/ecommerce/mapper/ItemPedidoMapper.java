@@ -10,6 +10,7 @@ public class ItemPedidoMapper {
     public static ItemPedido ToEntity (ItemPedidoDto itemPedidoDto){
 
         return ItemPedido.builder()
+                .id(itemPedidoDto.getId())
                 .preco(itemPedidoDto.getPreco())
                 .dataCadastro(itemPedidoDto.getDataCadastro())
                 .dataUltimaModificacao(itemPedidoDto.getDataUltimaModificacao())
@@ -22,6 +23,7 @@ public class ItemPedidoMapper {
     public static ItemPedidoResponse ToResponse (ItemPedidoDto itemPedidoDto){
 
         return ItemPedidoResponse.builder()
+                .id(itemPedidoDto.getId())
                 .preco(itemPedidoDto.getPreco())
                 .dataCadastro(itemPedidoDto.getDataCadastro())
                 .quantidade(itemPedidoDto.getQuantidade())
@@ -33,6 +35,7 @@ public class ItemPedidoMapper {
     public static ItemPedidoDto toDto (ItemPedido itemPedido){
 
         return ItemPedidoDto.builder()
+                .id(itemPedido.getId())
                 .preco(itemPedido.getPreco())
                 .dataCadastro(itemPedido.getDataCadastro())
                 .dataUltimaModificacao(itemPedido.getDataUltimaModificacao())
@@ -45,6 +48,7 @@ public class ItemPedidoMapper {
     public static ItemPedidoRequest toRequest (ItemPedido itemPedido){
 
         return ItemPedidoRequest.builder()
+                .id(itemPedido.getId())
                 .preco(itemPedido.getPreco())
                 .quantidade(itemPedido.getQuantidade())
                 .valorTotal(itemPedido.getValorTotal())
@@ -55,6 +59,7 @@ public class ItemPedidoMapper {
     public static ItemPedido ToEntity (ItemPedidoRequest itemPedidoRequest){
 
         return ItemPedido.builder()
+                .id(itemPedidoRequest.getId())
                 .preco(itemPedidoRequest.getPreco())
                 .quantidade(itemPedidoRequest.getQuantidade())
                 .valorTotal(itemPedidoRequest.getValorTotal())
