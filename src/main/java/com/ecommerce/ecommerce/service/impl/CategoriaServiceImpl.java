@@ -88,7 +88,7 @@ public class CategoriaServiceImpl implements CategoriaService {
             throw new NaoEncontradoException("Categorias não encontradas");
         }
         return lista.stream()
-                .map(CategoriaMapper::mapToCategoriaLista)
+                .map(CategoriaMapper::toResponse)
                 .collect(Collectors.toList());
     }
 

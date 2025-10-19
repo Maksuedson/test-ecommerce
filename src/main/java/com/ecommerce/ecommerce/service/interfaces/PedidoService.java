@@ -17,7 +17,7 @@ public interface PedidoService {
 
 	PedidoDto fecharVenda(Long id);
 	
-	List<PedidoDto> listaVendas();
+	List<PedidoDto> listaPedidos();
 	
 	List<PedidoDto> listaVendasPorData(LocalDateTime dataInicial, LocalDateTime dataFinal);
 	

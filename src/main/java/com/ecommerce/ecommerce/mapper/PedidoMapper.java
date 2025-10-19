@@ -75,6 +75,12 @@ public class PedidoMapper {
                 .build();
     }
 
+    public static List<PedidoResponse> toResponse(List<PedidoDto> pedidos) {
+        return pedidos.stream()
+                .map(PedidoMapper::toResponse)
+                .collect(Collectors.toList());
+    }
+
     public static Pedido toEntity(PedidoRequest request) {
 
         List<ItemPedido> itens = request.getItems() != null ? request.getItems().stream()

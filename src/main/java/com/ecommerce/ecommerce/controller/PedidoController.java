@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/pedidos")
 public class PedidoController {
@@ -28,6 +30,11 @@ public class PedidoController {
     @GetMapping("/{id}")
     public ResponseEntity<PedidoResponse> buscaPedidoPorId(@PathVariable Long id){
         return  ResponseEntity.ok(PedidoMapper.toResponse(pedidoService.buscaPedidoPorId(id)));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<PedidoResponse>> listar(){
+        return ResponseEntity.ok(PedidoMapper.toResponse(pedidoService.listaPedidos()));
     }
 
 }

@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PedidoServiceImpl implements PedidoService {
@@ -126,8 +127,15 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public List<PedidoDto> listaVendas() {
-        return null;
+    public List<PedidoDto> listaPedidos() {
+        List<Pedido> lista = pedidoRepository.findAll();
+
+        if (lista.isEmpty()){
+            throw new NaoEncontradoException("Pedidos não encontrados");
+        }
+        return lista.stream()
+                .map(PedidoMapper::toDto)
+                .collect(Collectors.toList());
     }
 
     @Override

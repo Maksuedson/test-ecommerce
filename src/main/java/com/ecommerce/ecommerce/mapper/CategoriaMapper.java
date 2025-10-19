@@ -29,7 +29,7 @@ public class CategoriaMapper {
                 categoria.getDataUltimaModificacao());
     }
 
-    public static CategoriaResponse mapToCategoriaLista(Categoria categoria){
+    public static CategoriaResponse toResponse(Categoria categoria){
 
         return new CategoriaResponse(
                 categoria.getId(),
@@ -37,7 +37,7 @@ public class CategoriaMapper {
                 categoria.getDataCadastro());
     }
 
-    public static CategoriaResponse mapToCategoriaResponse(CategoriaDto categoriaDto){
+    public static CategoriaResponse toResponse(CategoriaDto categoriaDto){
 
         return new CategoriaResponse(
                 categoriaDto.getId(),

@@ -23,7 +23,7 @@ public class CategoriaController {
     @PostMapping
     public ResponseEntity<CategoriaResponse> salvaCategoria(@RequestBody CategoriaDto categoriaDto){
         CategoriaDto categoriaSalvo = categoriaService.cadastrar(categoriaDto);
-        CategoriaResponse categoriaResponse = CategoriaMapper.mapToCategoriaResponse(categoriaSalvo);
+        CategoriaResponse categoriaResponse = CategoriaMapper.toResponse(categoriaSalvo);
         return new ResponseEntity<>(categoriaResponse, HttpStatus.CREATED);
     }
 
@@ -42,7 +42,7 @@ public class CategoriaController {
     @PutMapping
     public ResponseEntity<CategoriaResponse> alterar(@RequestBody CategoriaDto categoriaDto){
         CategoriaDto categoriaAlterado = categoriaService.alterar(categoriaDto.getId(), categoriaDto);
-        CategoriaResponse catetoria = CategoriaMapper.mapToCategoriaResponse(categoriaAlterado);
+        CategoriaResponse catetoria = CategoriaMapper.toResponse(categoriaAlterado);
         return ResponseEntity.ok(catetoria);
     }
 

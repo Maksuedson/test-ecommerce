@@ -1,0 +1,15 @@
+meta {
+  name: listar pedidos
+  type: http
+  seq: 6
+}
+
+get {
+  url: http://localhost:8080/api/produtos
+  body: json
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
