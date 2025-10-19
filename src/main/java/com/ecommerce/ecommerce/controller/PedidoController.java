@@ -4,6 +4,7 @@ import com.ecommerce.ecommerce.controller.request.PedidoRequest;
 import com.ecommerce.ecommerce.controller.response.PedidoResponse;
 import com.ecommerce.ecommerce.dto.PedidoDto;
 import com.ecommerce.ecommerce.mapper.PedidoMapper;
+import com.ecommerce.ecommerce.mapper.ProdutoMapper;
 import com.ecommerce.ecommerce.service.interfaces.PedidoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +36,13 @@ public class PedidoController {
     @GetMapping
     public ResponseEntity<List<PedidoResponse>> listar(){
         return ResponseEntity.ok(PedidoMapper.toResponse(pedidoService.listaPedidos()));
+    }
+
+    @PutMapping
+    public ResponseEntity<PedidoResponse> alterarPedido(@RequestBody PedidoRequest request){
+        PedidoDto pedido = pedidoService.alterarPedido(request.getId(), request);
+        PedidoResponse response = PedidoMapper.toResponse(pedido);
+        return ResponseEntity.ok(response);
     }
 
 }

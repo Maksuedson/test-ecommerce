@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -117,8 +118,53 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public PedidoDto alterarVenda(Long id, PedidoRequest pedidoDto) {
-        return null;
+    public PedidoDto alterarPedido(Long id, PedidoRequest pedidoRequest) {
+        Pedido pedidoExistente = buscaPorId(id);
+
+        ClienteDto clienteDto = clienteService.buscaClientePorId(pedidoRequest.getCliente().getId());
+        Cliente cliente = ClienteMapper.mapToCliente(clienteDto);
+
+        UsuarioDto usuarioDto = usuarioService.buscaUsuarioPorId(pedidoRequest.getUsuario().getId());
+        Usuario usuario = UsuarioMapper.toEntity(usuarioDto);
+
+        List<ItemPedido> itensAtualizados = pedidoRequest.getItems().stream()
+                .map(itemPedidoRequest -> {
+                    ItemPedido item = ItemPedidoMapper.ToEntity(itemPedidoRequest);
+                    ProdutoDto produtoDto = produtoService.bucarProdutoPorId(item.getProduto().getId());
+                    Produto produto = ProdutoMapper.mapToProduto(produtoDto);
+
+                    item.setProduto(produto);
+                    item.setPreco(produto.getPreco());
+
+                    BigDecimal quantidade = itemPedidoRequest.getQuantidade() != null
+                            ? itemPedidoRequest.getQuantidade()
+                            : BigDecimal.ZERO;
+
+                    item.setQuantidade(quantidade);
+                    item.setValorTotal(produto.getPreco().multiply(quantidade));
+                    item.setDataCadastro(LocalDateTime.now().withNano(0));
+                    item.setPedido(pedidoExistente);
+
+                    return item;
+                }).collect(Collectors.toCollection(ArrayList::new));
+
+        BigDecimal novoValorTotal = calcularTotalValorProdutos(itensAtualizados);
+
+        pedidoExistente.setCliente(cliente);
+        pedidoExistente.setUsuario(usuario);
+        pedidoExistente.setVendedor(usuario.getUsername());
+        pedidoExistente.setPedidoSituacao(pedidoRequest.getPedidoSituacao());
+        pedidoExistente.setPagamento(pedidoRequest.getPagamento());
+        
+        pedidoExistente.getItems().clear();
+        pedidoExistente.getItems().addAll(itensAtualizados);
+
+        pedidoExistente.setValorTotal(novoValorTotal);
+        pedidoExistente.setDataUltimaModificacao(LocalDateTime.now().withNano(0));
+
+        Pedido pedidoSalvo = pedidoRepository.save(pedidoExistente);
+
+        return PedidoMapper.toDto(pedidoSalvo);
     }
 
     @Override

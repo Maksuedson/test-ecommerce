@@ -1,10 +1,10 @@
 meta {
-  name: 5 salvar pedido
+  name: alterar pedido
   type: http
-  seq: 5
+  seq: 7
 }
 
-post {
+put {
   url: http://localhost:8080/api/pedidos
   body: json
   auth: inherit
@@ -12,6 +12,7 @@ post {
 
 body:json {
   {
+    "id": 1,
     "cliente": {
       "id": 1
     },
@@ -24,9 +25,9 @@ body:json {
     "items": [
       {
         "produto": {
-          "id":  "20dd254d-a82b-4c96-9df9-b78a8800f5ba"
+          "id": "20888d2e-b003-40c6-acf9-31d7abf5b502"
         },
-        "quantidade": 10
+        "quantidade": 5
       }
     ]
   }

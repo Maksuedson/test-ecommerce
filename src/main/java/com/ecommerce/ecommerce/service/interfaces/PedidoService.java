@@ -9,11 +9,11 @@ import java.util.List;
 public interface PedidoService {
 
 
-	PedidoDto efetuarPedido(PedidoRequest pedidoDto);
+	PedidoDto efetuarPedido(PedidoRequest pedidoRequest);
 
 	PedidoDto buscaPedidoPorId(Long id);
 
-	PedidoDto alterarVenda(Long id, PedidoRequest pedidoDto);
+	PedidoDto alterarPedido(Long id, PedidoRequest pedidoRequest);
 
 	PedidoDto fecharVenda(Long id);
 	
