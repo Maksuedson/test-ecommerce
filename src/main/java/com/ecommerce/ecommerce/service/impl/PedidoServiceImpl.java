@@ -7,6 +7,7 @@ import com.ecommerce.ecommerce.dto.UsuarioDto;
 import com.ecommerce.ecommerce.entity.*;
 import com.ecommerce.ecommerce.dto.PedidoDto;
 import com.ecommerce.ecommerce.enums.PedidoSituacao;
+import com.ecommerce.ecommerce.exception.NaoEncontradoException;
 import com.ecommerce.ecommerce.mapper.*;
 import com.ecommerce.ecommerce.repository.ClienteRepository;
 import com.ecommerce.ecommerce.repository.PedidoRepository;
@@ -103,8 +104,15 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public PedidoDto buscaVendaPorId(Long id) {
-        return null;
+    public PedidoDto buscaPedidoPorId(Long id) {
+        Pedido pedido = buscaPorId(id);
+        return PedidoMapper.toDto(pedido);
+    }
+
+    private Pedido buscaPorId(Long id) {
+        return pedidoRepository.findById(id)
+                .orElseThrow(
+                        () -> new NaoEncontradoException(String.format("Pedido numero '%s' não existe!", id)));
     }
 
     @Override

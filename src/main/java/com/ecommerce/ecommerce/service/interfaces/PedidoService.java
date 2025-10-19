@@ -11,7 +11,7 @@ public interface PedidoService {
 
 	PedidoDto efetuarPedido(PedidoRequest pedidoDto);
 
-	PedidoDto buscaVendaPorId(Long id);
+	PedidoDto buscaPedidoPorId(Long id);
 
 	PedidoDto alterarVenda(Long id, PedidoRequest pedidoDto);
 

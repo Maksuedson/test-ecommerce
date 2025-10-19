@@ -7,10 +7,7 @@ import com.ecommerce.ecommerce.mapper.PedidoMapper;
 import com.ecommerce.ecommerce.service.interfaces.PedidoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/pedidos")
@@ -26,6 +23,11 @@ public class PedidoController {
     public ResponseEntity<PedidoResponse> efetuarPedido(@RequestBody PedidoRequest request){
         PedidoDto pedido = pedidoService.efetuarPedido(request);
         return new ResponseEntity<>(PedidoMapper.toResponse(pedido), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PedidoResponse> buscaPedidoPorId(@PathVariable Long id){
+        return  ResponseEntity.ok(PedidoMapper.toResponse(pedidoService.buscaPedidoPorId(id)));
     }
 
 }
