@@ -155,7 +155,7 @@ public class PedidoServiceImpl implements PedidoService {
         pedidoExistente.setVendedor(usuario.getUsername());
         pedidoExistente.setPedidoSituacao(pedidoRequest.getPedidoSituacao());
         pedidoExistente.setPagamento(pedidoRequest.getPagamento());
-        
+
         pedidoExistente.getItems().clear();
         pedidoExistente.getItems().addAll(itensAtualizados);
 
