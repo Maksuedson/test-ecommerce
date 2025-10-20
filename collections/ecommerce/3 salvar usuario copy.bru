@@ -1,7 +1,7 @@
 meta {
-  name: salvar usuario
+  name: 3 salvar usuario copy
   type: http
-  seq: 3
+  seq: 4
 }
 
 post {
@@ -13,7 +13,8 @@ post {
 body:json {
   {
     "username": "joao.silva",
-    "password": "123"
+    "password": "123",
+    "roles": ["ADMIN", "USER"]
   }
   
 }

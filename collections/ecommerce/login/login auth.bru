@@ -1,11 +1,11 @@
 meta {
-  name: salvar usuario
+  name: login auth
   type: http
-  seq: 3
+  seq: 2
 }
 
 post {
-  url: http://localhost:8080/api/usuarios
+  url: http://localhost:8080/auth/login
   body: json
   auth: inherit
 }
@@ -15,7 +15,6 @@ body:json {
     "username": "joao.silva",
     "password": "123"
   }
-  
 }
 
 settings {
