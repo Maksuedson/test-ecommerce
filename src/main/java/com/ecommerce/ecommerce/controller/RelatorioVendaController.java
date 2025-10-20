@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -44,5 +45,10 @@ public class RelatorioVendaController {
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal) {
 
         return relatorioVendaService.ticketMedioUsuarios(dataInicial, dataFinal);
+    }
+
+    @GetMapping("/faturamento-mensal")
+    public BigDecimal faturamentoMensal() {
+        return relatorioVendaService.faturamentoMesAtual();
     }
 }

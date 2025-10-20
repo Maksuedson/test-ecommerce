@@ -8,7 +8,10 @@ import com.ecommerce.ecommerce.report.VendaRelatorioDTO;
 import com.ecommerce.ecommerce.repository.PedidoRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,5 +56,15 @@ public class RelatorioVendaService {
 
     public List<TicketMedioUsuarioDto> ticketMedioUsuarios(LocalDateTime dataInicial, LocalDateTime dataFinal) {
         return pedidoRepository.calcularTicketMedioPorUsuario(dataInicial, dataFinal);
+    }
+
+    public BigDecimal faturamentoMesAtual() {
+        LocalDate primeiroDia = LocalDate.now().withDayOfMonth(1);
+        LocalDateTime inicioMes = primeiroDia.atStartOfDay();
+
+        LocalDate ultimoDia = primeiroDia.plusMonths(1).minusDays(1);
+        LocalDateTime fimMes = ultimoDia.atTime(LocalTime.MAX);
+
+        return pedidoRepository.faturamentoMesAtual(inicioMes, fimMes);
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -33,6 +34,14 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long>{
     List<TicketMedioUsuarioDto> calcularTicketMedioPorUsuario(
             @Param("dataInicial") LocalDateTime dataInicial,
             @Param("dataFinal") LocalDateTime dataFinal
+    );
+
+    @Query("SELECT COALESCE(SUM(p.valorTotal), 0) " +
+            "FROM Pedido p " +
+            "WHERE p.dataCadastro BETWEEN :inicioMes AND :fimMes")
+    BigDecimal faturamentoMesAtual(
+            @Param("inicioMes") LocalDateTime inicioMes,
+            @Param("fimMes") LocalDateTime fimMes
     );
 
 
