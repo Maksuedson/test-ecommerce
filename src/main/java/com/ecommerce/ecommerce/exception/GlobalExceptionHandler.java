@@ -23,4 +23,10 @@ public class GlobalExceptionHandler {
     			(HttpStatus.CONFLICT).body("Erro de integridade: " + ex.getMessage());
     }
 
+    @ExceptionHandler(SqlInterityContraintViolationException.class)
+    public ResponseEntity<String> handleIntegridade(SqlInterityContraintViolationException ex) {
+        return ResponseEntity.status
+                (HttpStatus.CONFLICT).body("Erro de duplicidade: " + ex.getMessage());
+    }
+
 }

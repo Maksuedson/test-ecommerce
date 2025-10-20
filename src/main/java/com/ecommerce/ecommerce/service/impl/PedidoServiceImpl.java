@@ -95,7 +95,7 @@ public class PedidoServiceImpl implements PedidoService {
         pedido.setCliente(cliente);
         pedido.setDataCadastro(LocalDateTime.now().withNano(0));
         pedido.setUsuario(usuario);
-        pedido.setVendedor(usuario.getUsername());
+        pedido.setVendedor(usuario.getLogin());
         pedido.setValorTotal(totalValorProdutos);
         pedido.setItems(itens);
 
@@ -152,7 +152,7 @@ public class PedidoServiceImpl implements PedidoService {
 
         pedidoExistente.setCliente(cliente);
         pedidoExistente.setUsuario(usuario);
-        pedidoExistente.setVendedor(usuario.getUsername());
+        pedidoExistente.setVendedor(usuario.getLogin());
         pedidoExistente.setPedidoSituacao(pedidoRequest.getPedidoSituacao());
         pedidoExistente.setPagamento(pedidoRequest.getPagamento());
 

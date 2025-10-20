@@ -29,7 +29,7 @@ public class Usuario implements UserDetails {
     private Long id;
 
     @Column(unique = true, nullable = false)
-    private String username;
+    private String login;
 
     @Column(nullable = false)
     private String password;
@@ -46,8 +46,8 @@ public class Usuario implements UserDetails {
     @JsonIgnore
     private List<Pedido> pedidos;
 
-    public Usuario(String username, String password, List<String> roles) {
-        this.username = username;
+    public Usuario(String login, String password, List<String> roles) {
+        this.login = login;
         this.password = password;
         this.roles = roles;
     }
@@ -61,12 +61,11 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
-    @Override
     public String getUsername() {
-        return username;
+        return login;
     }
 
     @Override

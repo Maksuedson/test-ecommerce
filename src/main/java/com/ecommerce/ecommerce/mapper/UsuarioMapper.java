@@ -9,7 +9,7 @@ public class UsuarioMapper {
     public static Usuario toEntity(UsuarioDto usuarioDto){
         return Usuario.builder()
                 .id(usuarioDto.getId())
-                .username(usuarioDto.getUsername())
+                .login(usuarioDto.getUsername())
                 .password(usuarioDto.getPassword())
                 .roles(usuarioDto.getRoles())
                 .dataCadastro(usuarioDto.getDataCadastro())
@@ -20,7 +20,7 @@ public class UsuarioMapper {
     public static Usuario toEntity(UsuarioResponse response){
         return Usuario.builder()
                 .id(response.getId())
-                .username(response.getUsername())
+                .login(response.getUsername())
                 .roles(response.getRoles())
                 .build();
     }
@@ -44,7 +44,7 @@ public class UsuarioMapper {
     public static UsuarioDto toDto(Usuario usuario){
         return UsuarioDto.builder()
                 .id(usuario.getId())
-                .username(usuario.getUsername())
+                .username(usuario.getLogin())
                 .password(usuario.getPassword())
                 .roles(usuario.getRoles())
                 .dataCadastro(usuario.getDataCadastro())
