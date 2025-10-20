@@ -1,11 +1,13 @@
 package com.ecommerce.ecommerce.service;
 
+import com.ecommerce.ecommerce.dto.UsuarioRankingDto;
 import com.ecommerce.ecommerce.entity.Pedido;
 import com.ecommerce.ecommerce.report.ItemRelatorioDTO;
 import com.ecommerce.ecommerce.report.VendaRelatorioDTO;
 import com.ecommerce.ecommerce.repository.PedidoRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,5 +42,11 @@ public class RelatorioVendaService {
                     itens
             );
         }).collect(Collectors.toList());
+    }
+
+
+    public List<UsuarioRankingDto> top5UsuariosCompradores(LocalDateTime dataInicial, LocalDateTime dataFinal) {
+        List<UsuarioRankingDto> top = pedidoRepository.findTopUsuariosCompradores(dataInicial, dataFinal);
+        return top.stream().limit(5).toList();
     }
 }
