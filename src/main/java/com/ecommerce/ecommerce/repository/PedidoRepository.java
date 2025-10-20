@@ -1,5 +1,6 @@
 package com.ecommerce.ecommerce.repository;
 
+import com.ecommerce.ecommerce.dto.TicketMedioUsuarioDto;
 import com.ecommerce.ecommerce.dto.UsuarioRankingDto;
 import com.ecommerce.ecommerce.entity.Pedido;
 import com.ecommerce.ecommerce.entity.Produto;
@@ -22,5 +23,17 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long>{
             @Param("dataInicial") LocalDateTime dataInicial,
             @Param("dataFinal") LocalDateTime dataFinal
     );
-    
+
+    @Query("SELECT new com.ecommerce.ecommerce.dto.TicketMedioUsuarioDto(" +
+            "u.id, u.login, COUNT(p.id), SUM(p.valorTotal), SUM(p.valorTotal) / COUNT(p.id)) " +
+            "FROM Pedido p " +
+            "JOIN p.usuario u " +
+            "WHERE p.dataCadastro BETWEEN :dataInicial AND :dataFinal " +
+            "GROUP BY u.id, u.login")
+    List<TicketMedioUsuarioDto> calcularTicketMedioPorUsuario(
+            @Param("dataInicial") LocalDateTime dataInicial,
+            @Param("dataFinal") LocalDateTime dataFinal
+    );
+
+
 }

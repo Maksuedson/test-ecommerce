@@ -1,5 +1,6 @@
 package com.ecommerce.ecommerce.controller;
 
+import com.ecommerce.ecommerce.dto.TicketMedioUsuarioDto;
 import com.ecommerce.ecommerce.dto.UsuarioRankingDto;
 import com.ecommerce.ecommerce.report.VendaRelatorioDTO;
 import com.ecommerce.ecommerce.service.RelatorioVendaService;
@@ -35,5 +36,13 @@ public class RelatorioVendaController {
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal) {
 
         return relatorioVendaService.top5UsuariosCompradores(dataInicial, dataFinal);
+    }
+
+    @GetMapping("/ticket-medio")
+    public List<TicketMedioUsuarioDto> ticketMedioUsuarios(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicial,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal) {
+
+        return relatorioVendaService.ticketMedioUsuarios(dataInicial, dataFinal);
     }
 }

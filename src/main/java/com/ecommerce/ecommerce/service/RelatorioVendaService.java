@@ -1,5 +1,6 @@
 package com.ecommerce.ecommerce.service;
 
+import com.ecommerce.ecommerce.dto.TicketMedioUsuarioDto;
 import com.ecommerce.ecommerce.dto.UsuarioRankingDto;
 import com.ecommerce.ecommerce.entity.Pedido;
 import com.ecommerce.ecommerce.report.ItemRelatorioDTO;
@@ -48,5 +49,9 @@ public class RelatorioVendaService {
     public List<UsuarioRankingDto> top5UsuariosCompradores(LocalDateTime dataInicial, LocalDateTime dataFinal) {
         List<UsuarioRankingDto> top = pedidoRepository.findTopUsuariosCompradores(dataInicial, dataFinal);
         return top.stream().limit(5).toList();
+    }
+
+    public List<TicketMedioUsuarioDto> ticketMedioUsuarios(LocalDateTime dataInicial, LocalDateTime dataFinal) {
+        return pedidoRepository.calcularTicketMedioPorUsuario(dataInicial, dataFinal);
     }
 }
