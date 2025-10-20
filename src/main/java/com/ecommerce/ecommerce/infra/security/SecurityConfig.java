@@ -2,6 +2,7 @@ package com.ecommerce.ecommerce.infra.security;
 
 import com.ecommerce.ecommerce.repository.UsuarioRepository;
 import com.ecommerce.ecommerce.service.AuthUserDetailsService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,12 +37,35 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers( "/api/login").permitAll()
                         .requestMatchers("/api/usuarios").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/clientes").hasRole("ADMIN")
+                        .requestMatchers("/api/clientes").hasRole("ADMIN")
+                        .requestMatchers("/api/categorias").hasRole("ADMIN")
+                        .requestMatchers("/api/produtos").hasRole("ADMIN")
+                        .requestMatchers("/api/pedidos").hasRole("ADMIN")
+                        .requestMatchers("/api/relatorios").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET,"/api/produtos").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST,"/api/pedidos").hasRole("USER")
+
                         .anyRequest().authenticated()
                 )
 
 //                .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable())) // para H2
 //                .addFilterBefore(filterToken, UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            response.setContentType("application/json");
+                            response.getWriter().write(
+                                    "{\"error\": \"Credenciais inválidas ou ausentes. " + HttpServletResponse.SC_UNAUTHORIZED + "\"}"
+                            );
+                        })
+                        .accessDeniedHandler((request, response, accessDeniedException) -> {
+                            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                            response.setContentType("application/json");
+                            response.getWriter().write(
+                                    "{\"error\": \"Acesso negado: permissão insuficiente. " + HttpServletResponse.SC_FORBIDDEN + "\"}"
+                            );
+                        })
+                )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
 
                 .build();

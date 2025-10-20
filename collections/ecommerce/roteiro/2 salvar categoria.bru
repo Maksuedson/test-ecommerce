@@ -7,7 +7,11 @@ meta {
 post {
   url: http://localhost:8080/api/categorias
   body: json
-  auth: inherit
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvLmFkbWluIiwiaXNzIjoiYXV0aC1hcGkiLCJleHAiOjE3NjEwMDYwMzd9.nZBjf2KCL9v9fx5_6B_vPKxmOYhmrvoK-NcqyzGjDSQ
 }
 
 body:json {
@@ -18,4 +22,5 @@ body:json {
 
 settings {
   encodeUrl: true
+  timeout: 0
 }

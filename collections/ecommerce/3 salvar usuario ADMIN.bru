@@ -1,5 +1,5 @@
 meta {
-  name: 3 salvar usuario copy
+  name: 3 salvar usuario ADMIN
   type: http
   seq: 4
 }
@@ -12,7 +12,7 @@ post {
 
 body:json {
   {
-    "username": "joao.silva",
+    "username": "joao.admin",
     "password": "123",
     "roles": ["ADMIN", "USER"]
   }
@@ -21,4 +21,5 @@ body:json {
 
 settings {
   encodeUrl: true
+  timeout: 0
 }

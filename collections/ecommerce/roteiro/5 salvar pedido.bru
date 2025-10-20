@@ -7,7 +7,11 @@ meta {
 post {
   url: http://localhost:8080/api/pedidos
   body: json
-  auth: inherit
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FvLnVzdWFyaW8iLCJpc3MiOiJhdXRoLWFwaSIsImV4cCI6MTc2MTAwNjM3NX0.Crt4rKD0BiZSlQxi4BLlhjMF4flCRTta9SoXEQh3iBo
 }
 
 body:json {
@@ -24,7 +28,7 @@ body:json {
     "items": [
       {
         "produto": {
-          "id":  "20dd254d-a82b-4c96-9df9-b78a8800f5ba"
+          "id":  "0a7b64e7-bc81-4059-be38-fac791fc5304"
         },
         "quantidade": 10
       }
@@ -34,4 +38,5 @@ body:json {
 
 settings {
   encodeUrl: true
+  timeout: 0
 }

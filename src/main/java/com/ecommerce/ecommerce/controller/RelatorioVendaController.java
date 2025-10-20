@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/relatorios/vendas")
+@RequestMapping("/api/relatorios")
 public class RelatorioVendaController {
 
     private final RelatorioVendaService relatorioVendaService;
@@ -19,7 +19,7 @@ public class RelatorioVendaController {
         this.relatorioVendaService = relatorioVendaService;
     }
 
-    @GetMapping
+    @GetMapping("/vendas")
     public ResponseEntity<List<VendaRelatorioDTO>> listarRelatorioVendas() {
         List<VendaRelatorioDTO> relatorio = relatorioVendaService.gerarRelatorioVendas();
         return ResponseEntity.ok(relatorio);
