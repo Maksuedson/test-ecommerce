@@ -373,23 +373,17 @@ public ResponseEntity login(@RequestBody LoginRequest data)
 ```
 ## O que faz?
 
-Esse endpoint permite que um usuário já cadastrado faça login. Ao fazer isso, ele recebe um JWT (JSON Web Token) que será usado para autenticação em requisições futuras.
+- Esse endpoint permite que um usuário já cadastrado faça login. Ao fazer isso, ele recebe um JWT (JSON - Web Token) que será usado para autenticação em requisições futuras.
 
 ## Fluxo:
 
-O cliente envia login e senha no corpo da requisição (LoginRequest).
-
-É criado um objeto UsernamePasswordAuthenticationToken com essas credenciais.
-
-O authenticationManager.authenticate(...) tenta autenticar o usuário usando:
-
-O UserDetailsService (no caso, sua classe AuthUserDetailsService).
-
-O PasswordEncoder (BCrypt).
-
-Se a autenticação for bem-sucedida, o TokenService gera um JWT.
-
-O token é retornado no corpo da resposta.
+- O cliente envia login e senha no corpo da requisição (LoginRequest).
+- É criado um objeto UsernamePasswordAuthenticationToken com essas credenciais.
+- O authenticationManager.authenticate(...) tenta autenticar o usuário usando:
+- O UserDetailsService (no caso, sua classe AuthUserDetailsService).
+- O PasswordEncoder (BCrypt).
+- Se a autenticação for bem-sucedida, o TokenService gera um JWT.
+- O token é retornado no corpo da resposta.
 
 Exemplo de payload enviado:
 ```
@@ -408,21 +402,16 @@ Exemplo de payload enviado:
 
 # 🛠 3. Autenticação com JWT (Segurança)
 
-
 Após o login, o JWT deve ser enviado pelo cliente em todas as requisições protegidas (com exceção de /login e /usuarios) no cabeçalho HTTP:
 
 Authorization: Bearer <token>
 
-
 Esse token será:
 
-Verificado pelo SecurityFilter
-
-Extrai o token do cabeçalho.
-
-Usa o TokenService.validateToken(...) para validar.
-
-Recupera o usuário e coloca no SecurityContextHolder.
+- Verificado pelo SecurityFilter
+- Extrai o token do cabeçalho.
+- Usa o TokenService.validateToken(...) para validar.
+- Recupera o usuário e coloca no SecurityContextHolder.
 
 A partir disso, o Spring Security sabe quem está autenticado e quais permissões (roles) o usuário tem.
 
